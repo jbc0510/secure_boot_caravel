@@ -15,6 +15,9 @@
 
 `default_nettype none
 
+`define USE_POWER_PINS
+
+
 `ifndef __GLOBAL_DEFINE_H
 // Global parameters
 `define __GLOBAL_DEFINE_H

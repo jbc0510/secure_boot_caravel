@@ -1,0 +1,151 @@
+`timescale 1ns/1ps
+
+module secure_boot_system_wrapper (
+    input  logic clk,
+    input  logic reset,
+
+    // ===== Global FSM inputs =====
+    input  logic fw_ok,
+    input  logic fw_fail,
+    input  logic size_mismatch,
+    input  logic hdr_parse_fail,
+    input  logic power_glitch,
+    input  logic clock_glitch,
+    input  logic warm_reset_req,
+    input  logic cold_reset_req,
+    input  logic global_pin_ok,     // <<< ADDED
+
+    // ===== Group FSM inputs =====
+    input  logic unlock_req,
+    input  logic file_denied,
+    input logic group_autolock,
+
+    // ===== System-level tamper / illegal =====
+    input  logic tamper_in,
+    input  logic illegal_in,
+
+    // ===== Global FSM outputs =====
+    output logic [4:0]  global_state_bits,
+    output logic        global_state_boot,
+    output logic        global_state_locked,
+    output logic        global_state_authorized,
+    output logic        global_state_safe_mode,
+    output logic        global_state_escalated,
+    output logic        unlock_enable,
+    output logic        debug_enable,
+    output logic        safe_led,
+    output logic        fsm_error,
+    output logic        security_breach,
+    output logic [15:0] global_timeout_count,
+
+    // ===== Group FSM outputs =====
+    output logic [3:0]  group_state_bits,
+    output logic        group_state_disabled,
+    output logic        group_state_locked,
+    output logic        group_state_unlocked,
+    output logic        group_state_suspended,
+    output logic        group_unlocked,
+    output logic        group_locked,
+    output logic        group_suspended,
+    output logic        group_error,
+    output logic [15:0] group_timeout_count,
+
+    // ===== Sticky latches =====
+    output logic sticky_tamper,
+    output logic sticky_illegal
+);
+
+    // ============================================================
+    // Internal cross-FSM wires
+    // ============================================================
+    logic global_authorized;
+    logic group_unlocked_int;
+    logic unlock_enable_int;
+    logic debug_enable_int;
+
+    logic sticky_tamper_r;
+    logic sticky_illegal_r;
+
+    // ============================================================
+    // Sticky tamper and illegal-state latches
+    // ============================================================
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            sticky_tamper_r  <= 1'b0;
+            sticky_illegal_r <= 1'b0;
+        end else begin
+            if (tamper_in)
+                sticky_tamper_r <= 1'b1;
+            if (illegal_in)
+                sticky_illegal_r <= 1'b1;
+        end
+    end
+
+    assign sticky_tamper  = sticky_tamper_r;
+    assign sticky_illegal = sticky_illegal_r;
+
+    // ============================================================
+    // Global FSM instance
+    // ============================================================
+    secure_boot_fsm u_global (
+        .clk            (clk),
+        .reset          (reset),
+        .fw_ok          (fw_ok),
+        .fw_fail        (fw_fail),
+        .size_mismatch  (size_mismatch),
+        .hdr_parse_fail (hdr_parse_fail),
+        .global_pin_ok  (global_pin_ok),      // <<< ADDED
+        .group_unlocked (group_unlocked_int),
+        .group_autolock (group_autolock),
+        .file_denied    (file_denied),
+        .power_glitch   (power_glitch),
+        .clock_glitch   (clock_glitch),
+        .fatal_tamper   (sticky_tamper_r),
+        .illegal_state  (sticky_illegal_r),
+        .warm_reset_req (warm_reset_req),
+        .cold_reset_req (cold_reset_req),
+        .state_bits     (global_state_bits),
+        .state_boot     (global_state_boot),
+        .state_locked   (global_state_locked),
+        .state_authorized(global_state_authorized),
+        .state_safe_mode(global_state_safe_mode),
+        .state_escalated(global_state_escalated),
+        .unlock_enable  (unlock_enable_int),
+        .debug_enable   (debug_enable_int),
+        .safe_led       (safe_led),
+        .fsm_error      (fsm_error),
+        .security_breach(security_breach),
+        .timeout_count  (global_timeout_count)
+    );
+
+    assign global_authorized = global_state_authorized;
+    assign unlock_enable = unlock_enable_int;
+    assign debug_enable  = debug_enable_int;
+
+    // ============================================================
+    // Group FSM instance
+    // ============================================================
+    group_fsm u_group (
+        .clk             (clk),
+        .reset           (reset),
+        .global_authorized(global_authorized),
+        .unlock_req      (unlock_req),
+        .autolock        (group_autolock),
+        .file_denied     (file_denied),
+        .tamper          (sticky_tamper_r),
+        .illegal_state   (sticky_illegal_r),
+        .state_bits      (group_state_bits),
+        .state_disabled  (group_state_disabled),
+        .state_locked    (group_state_locked),
+        .state_unlocked  (group_state_unlocked),
+        .state_suspended (group_state_suspended),
+        .group_unlocked  (group_unlocked_int),
+        .group_locked    (group_locked),
+        .group_suspended (group_suspended),
+        .group_error     (group_error),
+        .timeout_count   (group_timeout_count)
+    );
+
+    assign group_unlocked = group_unlocked_int;
+
+endmodule
