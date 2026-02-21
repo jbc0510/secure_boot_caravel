@@ -1,0 +1,15 @@
+{
+    "DESIGN_NAME": "caravel_secure_boot",
+    "VERILOG_FILES": [
+        "dir::../../verilog/rtl/secure_boot_fsm.sv",
+        "dir::../../verilog/rtl/group_fsm.sv",
+        "dir::../../verilog/rtl/secure_boot_system_wrapper.sv",
+        "dir::../../verilog/rtl/caravel_secure_boot.sv"
+    ],
+    "CLOCK_PORT": "clk",
+    "CLOCK_PERIOD": 25,
+    "FP_SIZING": "relative",
+    "FP_CORE_UTIL": 40,
+    "PL_TARGET_DENSITY": 0.45,
+    "ROUTING_CORES": 4
+}

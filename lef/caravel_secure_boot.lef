@@ -1,0 +1,292 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO caravel_secure_boot
+  CLASS BLOCK ;
+  FOREIGN caravel_secure_boot ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 97.505 BY 108.225 ;
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 24.340 10.640 25.940 95.440 ;
+    END
+  END VGND
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 21.040 10.640 22.640 95.440 ;
+    END
+  END VPWR
+  PIN clk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.852000 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 88.440 4.000 89.040 ;
+    END
+  END clk
+  PIN clock_glitch
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 47.640 4.000 48.240 ;
+    END
+  END clock_glitch
+  PIN cold_reset_req
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 64.640 97.505 65.240 ;
+    END
+  END cold_reset_req
+  PIN debug_enable
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 40.840 97.505 41.440 ;
+    END
+  END debug_enable
+  PIN file_denied
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 54.830 0.000 55.110 4.000 ;
+    END
+  END file_denied
+  PIN fsm_error
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 74.840 97.505 75.440 ;
+    END
+  END fsm_error
+  PIN fw_fail
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 61.240 4.000 61.840 ;
+    END
+  END fw_fail
+  PIN fw_ok
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 61.270 104.225 61.550 108.225 ;
+    END
+  END fw_ok
+  PIN global_pin_ok
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 47.640 97.505 48.240 ;
+    END
+  END global_pin_ok
+  PIN group_autolock
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 51.610 0.000 51.890 4.000 ;
+    END
+  END group_autolock
+  PIN group_error
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 51.040 97.505 51.640 ;
+    END
+  END group_error
+  PIN group_suspended
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 37.440 97.505 38.040 ;
+    END
+  END group_suspended
+  PIN group_unlocked
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met2 ;
+        RECT 48.390 0.000 48.670 4.000 ;
+    END
+  END group_unlocked
+  PIN hdr_parse_fail
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 54.440 4.000 55.040 ;
+    END
+  END hdr_parse_fail
+  PIN illegal_in
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 57.840 97.505 58.440 ;
+    END
+  END illegal_in
+  PIN power_glitch
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 51.040 4.000 51.640 ;
+    END
+  END power_glitch
+  PIN reset
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.213000 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 27.240 97.505 27.840 ;
+    END
+  END reset
+  PIN safe_led
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 71.440 97.505 72.040 ;
+    END
+  END safe_led
+  PIN security_breach
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 68.040 97.505 68.640 ;
+    END
+  END security_breach
+  PIN size_mismatch
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 57.840 4.000 58.440 ;
+    END
+  END size_mismatch
+  PIN tamper_in
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 61.240 97.505 61.840 ;
+    END
+  END tamper_in
+  PIN unlock_enable
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.445500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 44.240 97.505 44.840 ;
+    END
+  END unlock_enable
+  PIN unlock_req
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 34.040 97.505 34.640 ;
+    END
+  END unlock_req
+  PIN warm_reset_req
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 93.505 54.440 97.505 55.040 ;
+    END
+  END warm_reset_req
+  OBS
+      LAYER nwell ;
+        RECT 5.330 10.760 91.730 95.390 ;
+      LAYER li1 ;
+        RECT 5.520 10.795 91.540 95.285 ;
+      LAYER met1 ;
+        RECT 4.210 10.640 91.540 95.440 ;
+      LAYER met2 ;
+        RECT 4.230 103.945 60.990 104.225 ;
+        RECT 61.830 103.945 90.980 104.225 ;
+        RECT 4.230 4.280 90.980 103.945 ;
+        RECT 4.230 4.000 48.110 4.280 ;
+        RECT 48.950 4.000 51.330 4.280 ;
+        RECT 52.170 4.000 54.550 4.280 ;
+        RECT 55.390 4.000 90.980 4.280 ;
+      LAYER met3 ;
+        RECT 3.990 89.440 93.505 95.365 ;
+        RECT 4.400 88.040 93.505 89.440 ;
+        RECT 3.990 75.840 93.505 88.040 ;
+        RECT 3.990 74.440 93.105 75.840 ;
+        RECT 3.990 72.440 93.505 74.440 ;
+        RECT 3.990 71.040 93.105 72.440 ;
+        RECT 3.990 69.040 93.505 71.040 ;
+        RECT 3.990 67.640 93.105 69.040 ;
+        RECT 3.990 65.640 93.505 67.640 ;
+        RECT 3.990 64.240 93.105 65.640 ;
+        RECT 3.990 62.240 93.505 64.240 ;
+        RECT 4.400 60.840 93.105 62.240 ;
+        RECT 3.990 58.840 93.505 60.840 ;
+        RECT 4.400 57.440 93.105 58.840 ;
+        RECT 3.990 55.440 93.505 57.440 ;
+        RECT 4.400 54.040 93.105 55.440 ;
+        RECT 3.990 52.040 93.505 54.040 ;
+        RECT 4.400 50.640 93.105 52.040 ;
+        RECT 3.990 48.640 93.505 50.640 ;
+        RECT 4.400 47.240 93.105 48.640 ;
+        RECT 3.990 45.240 93.505 47.240 ;
+        RECT 3.990 43.840 93.105 45.240 ;
+        RECT 3.990 41.840 93.505 43.840 ;
+        RECT 3.990 40.440 93.105 41.840 ;
+        RECT 3.990 38.440 93.505 40.440 ;
+        RECT 3.990 37.040 93.105 38.440 ;
+        RECT 3.990 35.040 93.505 37.040 ;
+        RECT 3.990 33.640 93.105 35.040 ;
+        RECT 3.990 28.240 93.505 33.640 ;
+        RECT 3.990 26.840 93.105 28.240 ;
+        RECT 3.990 10.715 93.505 26.840 ;
+  END
+END caravel_secure_boot
+END LIBRARY
+
