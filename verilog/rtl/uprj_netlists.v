@@ -13,16 +13,28 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
-// Include caravel global defines for the number of the user project IO pads 
+// ============================================================
+// BASE v2.0 – uprj_netlists.v
+// Updated from v1.0: explicit hierarchy replaces implicit chaining.
+// Order: leaf modules first, top-level wrapper last.
+// ============================================================
+
 `include "defines.v"
 `define USE_POWER_PINS
 
 `ifdef GL
-    // Assume default net type to be wire because GL netlists don't have the wire definitions
+    // GL mode: use gate-level netlists produced by OpenLane
     `default_nettype wire
     `include "gl/user_project_wrapper.v"
-    `include "gl/user_proj_example.v"
+    // NOTE: caravel_secure_boot.v is no longer a top-level module in v2.0.
+    // If needed for GL sim comparison, uncomment:
+    // `include "gl/caravel_secure_boot.v"
+    // `include "gl/secure_boot_system_wrapper.v"
 `else
+    // RTL mode: explicit file list, leaf-first
+    `include "secure_boot_core/secure_boot_fsm.sv"
+    `include "secure_boot_core/group_fsm.sv"
+    `include "secure_boot_core/secure_boot_system_wrapper.sv"
+    `include "control_plane/secure_boot_control_plane.sv"
     `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
 `endif
