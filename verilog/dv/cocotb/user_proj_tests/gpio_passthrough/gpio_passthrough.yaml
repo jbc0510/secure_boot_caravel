@@ -1,0 +1,9 @@
+# BASE v2.0 – GPIO Passthrough Test
+# STATUS: PLACEHOLDER – test implementation pending
+#
+# Test plan:
+#   1. Drive each io_in[7:20] high one at a time
+#   2. Confirm corresponding internal signal reaches secure_boot_system_wrapper
+#   3. After boot sequence, confirm io_out[21:28] carry correct boot outputs
+#   4. Confirm io_out[0:20] remain LOW
+#   5. Confirm io_out[29:37] remain LOW

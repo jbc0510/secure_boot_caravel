@@ -19,33 +19,24 @@ Clock clk
 rise -> rise
     min     max
 4.650000 5.570000 source latency
-7.704398         network latency mprj/_328_/CLK
-        10.646440 network latency mprj/_305_/CLK
+4.665152         network latency _755_/CLK
+        5.725822 network latency _784_/CLK
 ---------------
-12.354399 16.216440 latency
-        3.862041 skew
-
-rise -> fall
-    min     max
-4.650000 5.570000 source latency
-7.735256         network latency mprj/_328_/CLK
-        10.841234 network latency mprj/_305_/CLK
----------------
-12.385256 16.411234 latency
-        4.025978 skew
+9.315151 11.295823 latency
+        1.980672 skew
 
 fall -> fall
     min     max
 4.650000 5.570000 source latency
-8.006374         network latency mprj/_328_/CLK
-        8.944438 network latency mprj/_305_/CLK
+4.664665         network latency _755_/CLK
+        5.720681 network latency _784_/CLK
 ---------------
-12.656374 14.514438 latency
-        1.858064 skew
+9.314665 11.290681 latency
+        1.976016 skew
 
 
 
 ===========================================================================
 report_clock_min_period
 ============================================================================
-clk period_min = 10.83 fmax = 92.37
+clk period_min = 12.08 fmax = 82.79

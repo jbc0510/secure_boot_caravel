@@ -76,9 +76,9 @@ module user_project_wrapper #(parameter BITS = 32) (
     endgenerate
 
     // io_oeb: all pads HIGH (input direction)
-    // NOTE: io_oeb[21:28] are HIGH here, meaning the pads are configured as
+    // NOTE: io_oeb[21:28] are LOW here, meaning the pads are configured as
     // inputs at the Caravel pad ring level. If io_out[21:28] need to drive
-    // external signals, set io_oeb[21:28] LOW via your Caravel pin config.
+    // outputs (output-enabled). io_oeb LOW = output direction.
     // Verify with caravel/scripts/gen_gpio_defaults.py before tapeout.
     genvar i_io_oeb;
     generate
@@ -89,7 +89,7 @@ module user_project_wrapper #(parameter BITS = 32) (
             sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi1 (.HI(io_oeb[i_io_oeb]), .LO());
 
         for (i_io_oeb = 21; i_io_oeb <= 28; i_io_oeb = i_io_oeb + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi2 (.HI(io_oeb[i_io_oeb]), .LO());
+            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_lo2 (.HI(), .LO(io_oeb[i_io_oeb]));
 
         for (i_io_oeb = 29; i_io_oeb <= 37; i_io_oeb = i_io_oeb + 1)
             sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi3 (.HI(io_oeb[i_io_oeb]), .LO());

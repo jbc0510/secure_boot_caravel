@@ -93,7 +93,7 @@ module secure_boot_fsm (
     assign fault_event        = power_glitch | clock_glitch;
 
     // One-hot error disabled during reset
-    assign state_onehot_error = (!reset) && ($countones(state) != 3'd1);
+    assign state_onehot_error = (!reset) && (state != 5'b00001 && state != 5'b00010 && state != 5'b00100 && state != 5'b01000 && state != 5'b10000);
 
     //==========================================================================
     // Sequential Logic - State Register and Counters

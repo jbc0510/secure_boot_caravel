@@ -1,0 +1,12 @@
+# BASE v2.0 – Wishbone Register Map Test
+# STATUS: PLACEHOLDER – test implementation pending
+#
+# Test plan:
+#   1. Read GLOBAL_STATE (0x00) after reset – expect FSM in BOOT state
+#   2. Read STATUS_FLAGS (0x04) after reset – expect all stickies = 0
+#   3. Read TIMEOUTS (0x08) – expect counters at 0
+#   4. Write CONTROL (0x0C) = 0x1F – clear all shadow stickies (no-op at reset)
+#   5. Assert tamper_in, read STATUS_FLAGS – expect sw_sticky_tamper = 1
+#   6. Assert user_irq[0] = 1 after sticky set
+#   7. Write CONTROL[0] = 1 – clear tamper sticky
+#   8. Confirm user_irq[0] deasserts after all stickies cleared

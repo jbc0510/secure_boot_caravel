@@ -45,8 +45,6 @@
     "FP_PDN_HPITCH": 180,
     "FP_PDN_CORE_RING_VWIDTH": 3.1,
     "FP_PDN_CORE_RING_HWIDTH": 3.1,
-    "FP_PDN_CORE_RING_VOFFSET": 12.45,
-    "FP_PDN_CORE_RING_HOFFSET": 12.45,
     "FP_PDN_CORE_RING_VSPACING": 1.7,
     "FP_PDN_CORE_RING_HSPACING": 1.7,
     "ERROR_ON_PDN_VIOLATIONS": false,
@@ -93,5 +91,11 @@
         "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice",
         "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
     ],
-    "RUN_POST_GRT_RESIZER_TIMING": true
+    "RUN_POST_GRT_RESIZER_TIMING": true,
+    "PNR_EXCLUDED_CELL_FILE": "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/combined_exclude.cells",
+    "SYNTH_EXCLUDED_CELL_FILE": "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/combined_exclude.cells",
+    "SYNTH_DRIVING_CELL": "sky130_fd_sc_hd__inv_1/Y",
+    "SYNTH_BUFFER_CELL": "sky130_fd_sc_hd__buf_1/A/X",
+    "FP_PDN_CORE_RING_VOFFSET": 12.45,
+    "FP_PDN_CORE_RING_HOFFSET": 12.45
 }
