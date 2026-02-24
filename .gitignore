@@ -15,3 +15,5 @@
 /logs
 openlane2-venv
 design_info.yaml
+mag/*.mag
+mag/merged.max.mag
