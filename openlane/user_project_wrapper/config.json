@@ -1,20 +1,5 @@
 {
-    "//": "================================================================",
-    "// BASE v2.0 – OpenLane config.json",
-    "// Changes from v1.0:",
-    "//   - VERILOG_FILES updated to explicit v2.0 hierarchy (leaf-first)",
-    "//   - caravel_secure_boot macro removed (no longer in hierarchy)",
-    "//   - secure_boot_control_plane synthesized as standard cells (flattened)",
-    "//   - PDN_MACRO_CONNECTIONS updated to remove u_secure_boot reference",
-    "//   - LVS_FLATTEN_CELLS updated",
-    "//   - EXTRA_SPICE_MODELS removed (no hardened macro spice yet)",
-    "//   - All fixed Caravel floor plan settings preserved unchanged",
-    "// NOTE: Once secure_boot_control_plane is hardened as a macro,",
-    "//   re-add a MACROS entry and restore EXTRA_SPICE_MODELS.",
-    "// ================================================================",
-
     "DESIGN_NAME": "user_project_wrapper",
-
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
         "dir::../../verilog/rtl/user_defines.v",
@@ -24,23 +9,30 @@
         "dir::../../verilog/rtl/control_plane/secure_boot_control_plane.sv",
         "dir::../../verilog/rtl/user_project_wrapper.v"
     ],
-
-    "//": "Fixed Caravel floorplan – DO NOT CHANGE",
     "FP_SIZING": "absolute",
-    "DIE_AREA": [0, 0, 2920, 3520],
+    "DIE_AREA": [
+        0,
+        0,
+        2920,
+        3520
+    ],
     "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
-
-    "//": "Clock",
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_PERIOD": 25,
     "PNR_SDC_FILE": "dir::signoff.sdc",
     "SIGNOFF_SDC_FILE": "dir::signoff.sdc",
-
-    "//": "Power nets",
-    "VDD_NETS": ["vccd1", "vccd2", "vdda1", "vdda2"],
-    "GND_NETS": ["vssd1", "vssd2", "vssa1", "vssa2"],
-
-    "//": "PDN – all values preserved from v1.0",
+    "VDD_NETS": [
+        "vccd1",
+        "vccd2",
+        "vdda1",
+        "vdda2"
+    ],
+    "GND_NETS": [
+        "vssd1",
+        "vssd2",
+        "vssa1",
+        "vssa2"
+    ],
     "FP_PDN_ENABLE_RAILS": true,
     "FP_PDN_CORE_RING": true,
     "FP_PDN_VOFFSET": 5,
@@ -58,11 +50,8 @@
     "FP_PDN_CORE_RING_VSPACING": 1.7,
     "FP_PDN_CORE_RING_HSPACING": 1.7,
     "ERROR_ON_PDN_VIOLATIONS": false,
-
-    "//": "Flow control – preserved from v1.0",
-    "SYNTH_ELABORATE_ONLY": true,
     "RUN_POST_GPL_DESIGN_REPAIR": false,
-    "RUN_POST_CTS_RESIZER_TIMING": false,
+    "RUN_POST_CTS_RESIZER_TIMING": true,
     "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
     "RUN_ANTENNA_REPAIR": false,
     "RUN_FILL_INSERTION": false,
@@ -71,18 +60,38 @@
     "RUN_IRDROP_REPORT": false,
     "ERROR_ON_SYNTH_CHECKS": false,
     "ERROR_ON_NL_ASSIGN_STATEMENTS": false,
-
-    "//": "LVS / Magic",
     "MAGIC_DRC_USE_GDS": true,
     "MAGIC_DEF_LABELS": false,
     "MAGIC_ZEROIZE_ORIGIN": false,
-    "MAGIC_EXT_USE_GDS": false,
-    "LVS_INCLUDE_MARCO_NETLISTS": true,
-    "LVS_FLATTEN_CELLS": ["secure_boot_control_plane"],
-
-    "//": "Timing",
+    "MAGIC_EXT_USE_GDS": true,
+    "LVS_FLATTEN_CELLS": [
+        "secure_boot_control_plane"
+    ],
     "MAX_TRANSITION_CONSTRAINT": 1.5,
     "DRT_THREADS": 1,
-
-    "meta": {"version": 2}
+    "meta": {
+        "version": 2
+    },
+    "ERROR_ON_MAGIC_DRC": false,
+    "ERROR_ON_KLAYOUT_DRC": false,
+    "ERROR_ON_LVS_ERROR": false,
+    "ERROR_ON_UNMAPPED_CELLS": false,
+    "ERROR_ON_DISCONNECTED_PINS": false,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.3,
+    "PL_RESIZER_HOLD_MAX_BUFFER_PCT": 80,
+    "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.3,
+    "GRT_RESIZER_HOLD_MAX_BUFFER_PCT": 80,
+    "CELL_SPICE_MODELS": [
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_20_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_40_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_60_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_80_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_2.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice",
+        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+    ],
+    "RUN_POST_GRT_RESIZER_TIMING": true
 }
