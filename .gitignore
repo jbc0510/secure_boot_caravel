@@ -17,3 +17,6 @@ openlane2-venv
 design_info.yaml
 mag/*.mag
 mag/merged.max.mag
+mag/user_project_wrapper.mag
+*.deb
+wrapper_run*.log

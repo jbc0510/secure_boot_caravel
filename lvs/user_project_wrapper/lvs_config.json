@@ -20,10 +20,12 @@
     ],
     "LVS_SPICE_FILES": [
         "$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap*.spice",
-        "$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+        "$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice",
+        "$UPRJ_ROOT/spice/secure_boot_control_plane.spice"
     ],
     "LVS_VERILOG_FILES": [
-        "$UPRJ_ROOT/verilog/gl/user_project_wrapper.v"
+        "$UPRJ_ROOT/verilog/gl/user_project_wrapper.v",
+        "$UPRJ_ROOT/verilog/gl/secure_boot_control_plane.v"
     ],
     "LAYOUT_FILE": "$UPRJ_ROOT/gds/$TOP_LAYOUT.gds"
 }

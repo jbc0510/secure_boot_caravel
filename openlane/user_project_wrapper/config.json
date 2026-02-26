@@ -3,11 +3,19 @@
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
         "dir::../../verilog/rtl/user_defines.v",
-        "dir::../../verilog/rtl/secure_boot_core/secure_boot_fsm.sv",
-        "dir::../../verilog/rtl/secure_boot_core/group_fsm.sv",
-        "dir::../../verilog/rtl/secure_boot_core/secure_boot_system_wrapper.sv",
-        "dir::../../verilog/rtl/control_plane/secure_boot_control_plane.sv",
         "dir::../../verilog/rtl/user_project_wrapper.v"
+    ],
+    "VERILOG_FILES_BLACKBOX": [
+        "dir::../../verilog/gl/secure_boot_control_plane.v"
+    ],
+    "EXTRA_LEFS": [
+        "dir::../../lef/secure_boot_control_plane.lef"
+    ],
+    "EXTRA_GDS_FILES": [
+        "dir::../../gds/secure_boot_control_plane.gds"
+    ],
+    "EXTRA_LIBS": [
+        "dir::../../lib/secure_boot_control_plane.lib"
     ],
     "FP_SIZING": "absolute",
     "DIE_AREA": [
@@ -17,10 +25,10 @@
         3520
     ],
     "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
+    "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_PERIOD": 25,
-    "PNR_SDC_FILE": "dir::signoff.sdc",
-    "SIGNOFF_SDC_FILE": "dir::signoff.sdc",
+    "FP_PDN_MACRO_HOOKS": "u_secure_boot_cp vccd1 vssd1 vccd1 vssd1",
     "VDD_NETS": [
         "vccd1",
         "vccd2",
@@ -47,55 +55,33 @@
     "FP_PDN_CORE_RING_HWIDTH": 3.1,
     "FP_PDN_CORE_RING_VSPACING": 1.7,
     "FP_PDN_CORE_RING_HSPACING": 1.7,
-    "ERROR_ON_PDN_VIOLATIONS": false,
-    "RUN_POST_GPL_DESIGN_REPAIR": false,
-    "RUN_POST_CTS_RESIZER_TIMING": true,
-    "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
-    "RUN_ANTENNA_REPAIR": false,
-    "RUN_FILL_INSERTION": false,
+    "FP_PDN_CORE_RING_VOFFSET": 12.45,
+    "FP_PDN_CORE_RING_HOFFSET": 12.45,
     "RUN_TAP_ENDCAP_INSERTION": true,
     "RUN_CTS": false,
+    "RUN_FILL_INSERTION": false,
+    "RUN_ANTENNA_REPAIR": false,
+    "RUN_POST_GPL_DESIGN_REPAIR": false,
+    "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
     "RUN_IRDROP_REPORT": false,
+    "ERROR_ON_PDN_VIOLATIONS": false,
     "ERROR_ON_SYNTH_CHECKS": false,
     "ERROR_ON_NL_ASSIGN_STATEMENTS": false,
-    "MAGIC_DRC_USE_GDS": true,
-    "MAGIC_DEF_LABELS": false,
-    "MAGIC_ZEROIZE_ORIGIN": false,
-    "MAGIC_EXT_USE_GDS": true,
-    "LVS_FLATTEN_CELLS": [
-        "secure_boot_control_plane"
-    ],
-    "MAX_TRANSITION_CONSTRAINT": 1.5,
-    "DRT_THREADS": 1,
-    "meta": {
-        "version": 2
-    },
     "ERROR_ON_MAGIC_DRC": false,
     "ERROR_ON_KLAYOUT_DRC": false,
     "ERROR_ON_LVS_ERROR": false,
     "ERROR_ON_UNMAPPED_CELLS": false,
     "ERROR_ON_DISCONNECTED_PINS": false,
-    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.3,
-    "PL_RESIZER_HOLD_MAX_BUFFER_PCT": 80,
-    "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.3,
-    "GRT_RESIZER_HOLD_MAX_BUFFER_PCT": 80,
+    "MAGIC_DRC_USE_GDS": true,
+    "MAGIC_DEF_LABELS": false,
+    "MAGIC_ZEROIZE_ORIGIN": false,
+    "MAGIC_EXT_USE_GDS": true,
+    "DRT_THREADS": 1,
+    "MAX_TRANSITION_CONSTRAINT": 1.5,
+    "meta": {
+        "version": 2
+    },
     "CELL_SPICE_MODELS": [
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_20_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_40_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_60_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_80_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_2.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice",
-        "/home/jerry0510/Caravel/secure_boot_caravel/dependencies/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
-    ],
-    "RUN_POST_GRT_RESIZER_TIMING": true,
-    "PNR_EXCLUDED_CELL_FILE": "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/combined_exclude.cells",
-    "SYNTH_EXCLUDED_CELL_FILE": "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/combined_exclude.cells",
-    "SYNTH_DRIVING_CELL": "sky130_fd_sc_hd__inv_1/Y",
-    "SYNTH_BUFFER_CELL": "sky130_fd_sc_hd__buf_1/A/X",
-    "FP_PDN_CORE_RING_VOFFSET": 12.45,
-    "FP_PDN_CORE_RING_HOFFSET": 12.45
+        "dir::../../spice/secure_boot_control_plane.spice"
+    ]
 }

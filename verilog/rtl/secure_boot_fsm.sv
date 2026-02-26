@@ -93,7 +93,46 @@ module secure_boot_fsm (
     assign fault_event        = power_glitch | clock_glitch;
 
     // One-hot error disabled during reset
-    assign state_onehot_error = (!reset) && ($countones(state) != 3'd1);
+    assign state_onehot_error = (!reset) && (state != 5'b00001 && state != 5'b00010 && state != 5'b00100 && state != 5'b01000 && state != 5'b10000);
+
+    //==========================================================================
+    // Out-of-order input detection
+    //
+    // Each signal is "unexpected" if asserted in a state where it has no
+    // defined role.  Unexpected assertion -> SAFE_MODE.
+    //==========================================================================
+    logic unexpected_input;
+
+    always_comb begin
+        unexpected_input = 1'b0;
+
+        case (state)
+            GLOBAL_BOOT: begin
+                if (global_pin_ok || group_unlocked || file_denied ||
+                    warm_reset_req || cold_reset_req || group_autolock)
+                    unexpected_input = 1'b1;
+            end
+            GLOBAL_LOCKED: begin
+                if (fw_ok || warm_reset_req || group_autolock)
+                    unexpected_input = 1'b1;
+            end
+            GLOBAL_AUTHORIZED: begin
+                if (fw_ok || global_pin_ok || group_unlocked)
+                    unexpected_input = 1'b1;
+            end
+            GLOBAL_SAFE_MODE: begin
+                if (fw_ok || global_pin_ok || group_unlocked || file_denied ||
+                    group_autolock || boot_failure_event)
+                    unexpected_input = 1'b1;
+            end
+            GLOBAL_ESCALATED: begin
+                unexpected_input = 1'b0;
+            end
+            default: begin
+                unexpected_input = 1'b0;
+            end
+        endcase
+    end
 
     //==========================================================================
     // Sequential Logic - State Register and Counters
@@ -159,14 +198,24 @@ module secure_boot_fsm (
                 next_state = GLOBAL_ESCALATED;
             end
 
-            // Priority 2: State-specific transitions
+            // Priority 2: Fault event from ANY state -> ESCALATED
+            else if (fault_event) begin
+                next_state = GLOBAL_ESCALATED;
+            end
+
+            // Priority 3: Out-of-order input -> SAFE_MODE
+            else if (unexpected_input) begin
+                next_state = GLOBAL_SAFE_MODE;
+            end
+
+            // Priority 4: State-specific transitions
             else begin
                 case (state)
 
                     GLOBAL_BOOT: begin
                         if (fw_ok)
                             next_state = GLOBAL_LOCKED;
-                        else if (boot_failure_event || fault_event || timeout_boot)
+                        else if (boot_failure_event || timeout_boot)
                             next_state = GLOBAL_SAFE_MODE;
                     end
 
@@ -180,7 +229,7 @@ module secure_boot_fsm (
                             next_state = GLOBAL_AUTHORIZED;
 
                         // Fail-secure transitions
-                        else if (file_denied_2 || timeout_locked || fault_event)
+                        else if (file_denied_2 || timeout_locked)
                             next_state = GLOBAL_SAFE_MODE;
 
                         // Reset path
@@ -191,7 +240,7 @@ module secure_boot_fsm (
                     GLOBAL_AUTHORIZED: begin
                         if (group_autolock || timeout_auth)
                             next_state = GLOBAL_LOCKED;
-                        else if (file_denied_2 || fault_event)
+                        else if (file_denied_2)
                             next_state = GLOBAL_SAFE_MODE;
                         else if (file_denied_1)
                             next_state = GLOBAL_LOCKED;
@@ -202,10 +251,8 @@ module secure_boot_fsm (
                     end
 
                     GLOBAL_SAFE_MODE: begin
-                        if (fatal_tamper || illegal_state)
-                            next_state = GLOBAL_ESCALATED;
-                        else if (warm_reset_req)
-                            next_state = GLOBAL_LOCKED;
+                        if (warm_reset_req)
+                            next_state = GLOBAL_BOOT;
                         else if (cold_reset_req)
                             next_state = GLOBAL_BOOT;
                     end
