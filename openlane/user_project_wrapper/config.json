@@ -83,7 +83,5 @@
     },
     "CELL_SPICE_MODELS": [
         "dir::../../spice/hsm_top.spice"
-    ],
-    "MACRO_HALO_X": 20,
-    "MACRO_HALO_Y": 20
+    ]
 }

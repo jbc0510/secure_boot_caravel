@@ -288,6 +288,6 @@ DRC style is now "drc(full)"
 Loading DRC CIF style.
 [INFO] COUNT: 8463
 [INFO] Should be divided by 3 or 4
-[INFO] DRC Checking DONE (/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_11_22/57-magic-drc/reports/drc_violations.magic.rpt)
-[INFO] Saving mag view with DRC errors (/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_11_22/57-magic-drc/views/user_project_wrapper.drc.mag)
+[INFO] DRC Checking DONE (/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_14_15/57-magic-drc/reports/drc_violations.magic.rpt)
+[INFO] Saving mag view with DRC errors (/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_14_15/57-magic-drc/views/user_project_wrapper.drc.mag)
 [INFO] Saved

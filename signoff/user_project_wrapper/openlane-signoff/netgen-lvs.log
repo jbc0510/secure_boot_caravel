@@ -326,8 +326,8 @@ No property perim found for device sky130_fd_pr__special_nfet_01v8
 No property topography found for device sky130_fd_pr__special_nfet_01v8
 No property value found for device sky130_fd_pr__diode_pw2nd_05v5
 No property mult found for device sky130_fd_pr__diode_pw2nd_05v5
-Comparison output logged to file /home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_11_22/63-netgen-lvs/reports/lvs.netgen.rpt
-Logging to file "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_11_22/63-netgen-lvs/reports/lvs.netgen.rpt" enabled
+Comparison output logged to file /home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_14_15/63-netgen-lvs/reports/lvs.netgen.rpt
+Logging to file "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_14_15/63-netgen-lvs/reports/lvs.netgen.rpt" enabled
 
 Contents of circuit 1:  Circuit: 'sky130_fd_sc_hd__a31o_1'
 Circuit sky130_fd_sc_hd__a31o_1 contains 10 device instances.
@@ -3497,5 +3497,5 @@ Circuit 1 contains 2323 nets,    Circuit 2 contains 523 nets. *** MISMATCH ***
 
 Final result: 
 Netlists do not match.
-Logging to file "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_11_22/63-netgen-lvs/reports/lvs.netgen.rpt" disabled
+Logging to file "/home/jerry0510/Caravel/secure_boot_caravel/openlane/user_project_wrapper/runs/26_03_04_14_15/63-netgen-lvs/reports/lvs.netgen.rpt" disabled
 LVS Done.
