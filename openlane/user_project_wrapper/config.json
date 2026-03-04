@@ -6,16 +6,16 @@
         "dir::../../verilog/rtl/user_project_wrapper.v"
     ],
     "VERILOG_FILES_BLACKBOX": [
-        "dir::../../verilog/gl/secure_boot_control_plane.v"
+        "dir::../../verilog/gl/hsm_top.v"
     ],
     "EXTRA_LEFS": [
-        "dir::../../lef/secure_boot_control_plane.lef"
+        "dir::../../lef/hsm_top.lef"
     ],
     "EXTRA_GDS_FILES": [
-        "dir::../../gds/secure_boot_control_plane.gds"
+        "dir::../../gds/hsm_top.gds"
     ],
     "EXTRA_LIBS": [
-        "dir::../../lib/secure_boot_control_plane.lib"
+        "dir::../../lib/hsm_top.lib"
     ],
     "FP_SIZING": "absolute",
     "DIE_AREA": [
@@ -28,7 +28,7 @@
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_PERIOD": 25,
-    "FP_PDN_MACRO_HOOKS": "u_secure_boot_cp vccd1 vssd1 vccd1 vssd1",
+    "FP_PDN_MACRO_HOOKS": "u_hsm vccd1 vssd1 vccd1 vssd1",
     "VDD_NETS": [
         "vccd1",
         "vccd2",
@@ -82,6 +82,8 @@
         "version": 2
     },
     "CELL_SPICE_MODELS": [
-        "dir::../../spice/secure_boot_control_plane.spice"
-    ]
+        "dir::../../spice/hsm_top.spice"
+    ],
+    "MACRO_HALO_X": 20,
+    "MACRO_HALO_Y": 20
 }

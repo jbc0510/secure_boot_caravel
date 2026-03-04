@@ -1,17 +1,21 @@
-┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
-┃ P / R ┃ Partial ┃ Required ┃ Net          ┃ Pin                             ┃ Layer ┃
-┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
-│ 1.39  │ 3850.77 │ 2773.88  │ io_in[14]    │ u_secure_boot_cp/cold_reset_req │ met4  │
-│ 1.31  │ 3645.67 │ 2773.88  │ wb_rst_i     │ u_secure_boot_cp/wb_rst_i       │ met3  │
-│ 1.31  │ 3628.69 │ 2773.88  │ wbs_sel_i[0] │ u_secure_boot_cp/wb_sel_i[0]    │ met3  │
-│ 1.30  │ 3611.27 │ 2773.88  │ wbs_cyc_i    │ u_secure_boot_cp/wb_cyc_i       │ met3  │
-│ 1.30  │ 3606.54 │ 2773.88  │ wbs_we_i     │ u_secure_boot_cp/wb_we_i        │ met3  │
-│ 1.30  │ 3594.39 │ 2773.88  │ wbs_stb_i    │ u_secure_boot_cp/wb_stb_i       │ met3  │
-│ 1.29  │ 3572.39 │ 2773.88  │ io_in[13]    │ u_secure_boot_cp/warm_reset_req │ met4  │
-│ 1.28  │ 3550.08 │ 2773.88  │ wbs_dat_i[0] │ u_secure_boot_cp/wb_dat_i[0]    │ met3  │
-│ 1.26  │ 3491.19 │ 2773.88  │ wbs_dat_i[1] │ u_secure_boot_cp/wb_dat_i[1]    │ met3  │
-│ 1.24  │ 3431.70 │ 2773.88  │ wbs_dat_i[2] │ u_secure_boot_cp/wb_dat_i[2]    │ met3  │
-│ 1.22  │ 3371.06 │ 2773.88  │ wbs_dat_i[3] │ u_secure_boot_cp/wb_dat_i[3]    │ met3  │
-│ 1.19  │ 3311.62 │ 2773.88  │ wbs_dat_i[4] │ u_secure_boot_cp/wb_dat_i[4]    │ met3  │
-│ 1.13  │ 3128.17 │ 2773.88  │ io_in[15]    │ u_secure_boot_cp/global_pin_ok  │ met3  │
-└───────┴─────────┴──────────┴──────────────┴─────────────────────────────────┴───────┘
+┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ P / R ┃ Partial ┃ Required ┃ Net          ┃ Pin               ┃ Layer ┃
+┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 2.46  │ 6819.60 │ 2773.88  │ wbs_adr_i[2] │ u_hsm/wb_adr_i[2] │ met5  │
+│ 2.40  │ 6659.38 │ 2773.88  │ wbs_adr_i[4] │ u_hsm/wb_adr_i[4] │ met5  │
+│ 1.99  │ 5525.45 │ 2773.88  │ wb_rst_i     │ u_hsm/reset       │ met3  │
+│ 1.78  │ 4928.54 │ 2773.88  │ wbs_adr_i[3] │ u_hsm/wb_adr_i[3] │ met3  │
+│ 1.74  │ 4822.29 │ 2773.88  │ wbs_stb_i    │ u_hsm/wb_stb_i    │ met3  │
+│ 1.73  │ 4794.61 │ 2773.88  │ wbs_dat_i[1] │ u_hsm/wb_dat_i[1] │ met3  │
+│ 1.73  │ 4789.65 │ 2773.88  │ wbs_dat_i[0] │ u_hsm/wb_dat_i[0] │ met3  │
+│ 1.70  │ 4729.01 │ 2773.88  │ wbs_dat_i[2] │ u_hsm/wb_dat_i[2] │ met3  │
+│ 1.67  │ 4622.29 │ 2773.88  │ wbs_dat_i[3] │ u_hsm/wb_dat_i[3] │ met3  │
+│ 1.62  │ 4485.27 │ 2773.88  │ wbs_dat_i[4] │ u_hsm/wb_dat_i[4] │ met3  │
+│ 1.62  │ 4484.14 │ 2773.88  │ wbs_adr_i[6] │ u_hsm/wb_adr_i[6] │ met3  │
+│ 1.61  │ 4475.98 │ 2773.88  │ wbs_adr_i[7] │ u_hsm/wb_adr_i[7] │ met3  │
+│ 1.60  │ 4432.85 │ 2773.88  │ wbs_dat_i[5] │ u_hsm/wb_dat_i[5] │ met3  │
+│ 1.59  │ 4411.29 │ 2773.88  │ wbs_dat_i[6] │ u_hsm/wb_dat_i[6] │ met3  │
+│ 1.57  │ 4343.65 │ 2773.88  │ wbs_dat_i[7] │ u_hsm/wb_dat_i[7] │ met3  │
+│ 1.49  │ 4143.86 │ 2773.88  │ wbs_adr_i[2] │ u_hsm/wb_adr_i[2] │ met4  │
+│ 1.19  │ 3309.53 │ 2773.88  │ wbs_we_i     │ u_hsm/wb_we_i     │ met4  │
+└───────┴─────────┴──────────┴──────────────┴───────────────────┴───────┘

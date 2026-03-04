@@ -20,3 +20,9 @@ mag/merged.max.mag
 mag/user_project_wrapper.mag
 *.deb
 wrapper_run*.log
+# Large binary files - use LFS or transfer separately
+gds/*.gds
+*.log
+spef/*.spef
+spef/multicorner/*.spef
+gds/*.gds

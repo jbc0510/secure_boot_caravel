@@ -4,8 +4,7 @@ report_checks -unconstrained
 ===========================================================================
 ======================= max_ff_n40C_1v95 Corner ===================================
 
-Startpoint: u_secure_boot_cp
-            (rising edge-triggered flip-flop clocked by wb_clk_i)
+Startpoint: u_hsm (rising edge-triggered flip-flop clocked by wb_clk_i)
 Endpoint: io_out[23] (output port clocked by wb_clk_i)
 Path Group: wb_clk_i
 Path Type: max
@@ -14,13 +13,13 @@ Fanout         Cap        Slew       Delay        Time   Description
 ---------------------------------------------------------------------------------------------
                                   0.000000    0.000000   clock wb_clk_i (rise edge)
                                   0.000000    0.000000   clock source latency
-     1    0.362935    1.152976    1.052708    1.052708 ^ wb_clk_i (in)
+     1    0.441620    1.361689    1.316363    1.316363 ^ wb_clk_i (in)
                                                          wb_clk_i (net)
-                      1.573480    0.000000    1.052708 ^ u_secure_boot_cp/wb_clk_i (secure_boot_control_plane)
-     1    0.419965    1.983447    3.276504    4.329212 ^ u_secure_boot_cp/safe_led (secure_boot_control_plane)
+                      2.032490    0.000000    1.316363 ^ u_hsm/clk (hsm_top)
+     1    0.546630    2.506970    4.528467    5.844830 ^ u_hsm/safe_led (hsm_top)
                                                          io_out[23] (net)
-                      2.266276    0.567927    4.897139 ^ io_out[23] (out)
-                                              4.897139   data arrival time
+                      3.243164    1.064125    6.908955 ^ io_out[23] (out)
+                                              6.908955   data arrival time
 
                                  25.000000   25.000000   clock wb_clk_i (rise edge)
                                   0.000000   25.000000   clock network delay (propagated)
@@ -30,9 +29,9 @@ Fanout         Cap        Slew       Delay        Time   Description
                                              19.750000   data required time
 ---------------------------------------------------------------------------------------------
                                              19.750000   data required time
-                                             -4.897139   data arrival time
+                                             -6.908955   data arrival time
 ---------------------------------------------------------------------------------------------
-                                             14.852860   slack (MET)
+                                             12.841045   slack (MET)
 
 
 
@@ -54,274 +53,247 @@ max slew
 
 Pin                                        Limit        Slew       Slack
 ------------------------------------------------------------------------
-wbs_dat_o[14]                           1.500000    3.699906   -2.199906 (VIOLATED)
-wbs_dat_o[11]                           1.500000    3.332754   -1.832754 (VIOLATED)
-wbs_dat_o[15]                           1.500000    2.715145   -1.215145 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[14]           1.500000    2.704954   -1.204954 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[15]           1.500000    2.684465   -1.184465 (VIOLATED)
-wbs_dat_o[3]                            1.500000    2.579887   -1.079887 (VIOLATED)
-io_out[22]                              1.500000    2.530500   -1.030500 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[11]           1.500000    2.501738   -1.001738 (VIOLATED)
-wbs_dat_o[21]                           1.500000    2.483544   -0.983544 (VIOLATED)
-wbs_dat_o[2]                            1.500000    2.454032   -0.954032 (VIOLATED)
-wbs_dat_o[10]                           1.500000    2.356369   -0.856369 (VIOLATED)
-wbs_dat_o[12]                           1.500000    2.354597   -0.854597 (VIOLATED)
-io_out[23]                              1.500000    2.266276   -0.766276 (VIOLATED)
-wbs_dat_o[8]                            1.500000    2.243379   -0.743379 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[10]           1.500000    2.241042   -0.741042 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[3]            1.500000    2.225442   -0.725442 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[12]           1.500000    2.224236   -0.724236 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[16]           1.500000    2.173654   -0.673654 (VIOLATED)
-user_irq[0]                             1.500000    2.173096   -0.673096 (VIOLATED)
-u_secure_boot_cp/debug_enable           1.500000    2.171324   -0.671325 (VIOLATED)
-wbs_dat_o[5]                            1.500000    2.129962   -0.629963 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[2]            1.500000    2.124711   -0.624711 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[21]           1.500000    2.123475   -0.623475 (VIOLATED)
-wbs_dat_o[9]                            1.500000    2.121374   -0.621374 (VIOLATED)
-wbs_dat_o[28]                           1.500000    2.096803   -0.596803 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[0]            1.500000    2.092709   -0.592709 (VIOLATED)
-wbs_dat_o[4]                            1.500000    2.063887   -0.563887 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[8]            1.500000    2.050839   -0.550839 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[4]            1.500000    2.043412   -0.543412 (VIOLATED)
-wbs_dat_o[31]                           1.500000    2.035769   -0.535769 (VIOLATED)
-wbs_ack_o                               1.500000    2.028604   -0.528604 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[4]            1.500000    2.010114   -0.510114 (VIOLATED)
-wbs_dat_o[13]                           1.500000    1.988296   -0.488296 (VIOLATED)
-u_secure_boot_cp/safe_led               1.500000    1.983447   -0.483447 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[5]            1.500000    1.942552   -0.442552 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[1]            1.500000    1.937725   -0.437725 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[9]            1.500000    1.932785   -0.432785 (VIOLATED)
-u_secure_boot_cp/wb_ack_o               1.500000    1.931804   -0.431804 (VIOLATED)
-wbs_dat_o[1]                            1.500000    1.925617   -0.425617 (VIOLATED)
-wbs_dat_o[0]                            1.500000    1.916269   -0.416269 (VIOLATED)
-u_secure_boot_cp/user_irq               1.500000    1.914881   -0.414881 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[10]           1.500000    1.911213   -0.411213 (VIOLATED)
-wbs_dat_o[24]                           1.500000    1.886156   -0.386156 (VIOLATED)
-io_out[21]                              1.500000    1.879144   -0.379144 (VIOLATED)
-wbs_dat_o[6]                            1.500000    1.850320   -0.350321 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[6]            1.500000    1.849974   -0.349974 (VIOLATED)
-io_out[24]                              1.500000    1.848318   -0.348318 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[10]           1.500000    1.846394   -0.346394 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[28]           1.500000    1.842563   -0.342563 (VIOLATED)
-u_secure_boot_cp/fsm_error              1.500000    1.836954   -0.336954 (VIOLATED)
-wbs_dat_o[7]                            1.500000    1.832349   -0.332349 (VIOLATED)
-u_secure_boot_cp/wb_we_i                1.500000    1.831549   -0.331549 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[1]            1.500000    1.830612   -0.330612 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[13]           1.500000    1.829530   -0.329530 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[9]            1.500000    1.827754   -0.327755 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[0]            1.500000    1.824111   -0.324111 (VIOLATED)
-wbs_dat_o[18]                           1.500000    1.817690   -0.317690 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[19]           1.500000    1.816178   -0.316178 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[31]           1.500000    1.803580   -0.303580 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[24]           1.500000    1.794513   -0.294513 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[23]           1.500000    1.773755   -0.273755 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[9]            1.500000    1.767905   -0.267905 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[6]            1.500000    1.761784   -0.261784 (VIOLATED)
-wbs_dat_o[22]                           1.500000    1.757074   -0.257074 (VIOLATED)
-u_secure_boot_cp/wb_rst_i               1.500000    1.749693   -0.249693 (VIOLATED)
-u_secure_boot_cp/wb_sel_i[2]            1.500000    1.746469   -0.246469 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[25]           1.500000    1.745288   -0.245289 (VIOLATED)
-wbs_dat_o[16]                           1.500000    1.744905   -0.244905 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[7]            1.500000    1.743371   -0.243371 (VIOLATED)
-wbs_dat_i[10]                           1.499372    1.738002   -0.238630 (VIOLATED)
-wbs_dat_o[17]                           1.500000    1.728835   -0.228835 (VIOLATED)
-io_out[25]                              1.500000    1.724672   -0.224672 (VIOLATED)
-wbs_dat_o[19]                           1.500000    1.722758   -0.222758 (VIOLATED)
-wbs_dat_o[20]                           1.500000    1.721078   -0.221078 (VIOLATED)
-u_secure_boot_cp/security_breach        1.500000    1.714431   -0.214431 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[30]           1.500000    1.713508   -0.213508 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[28]           1.500000    1.705216   -0.205216 (VIOLATED)
-wbs_dat_o[23]                           1.500000    1.692513   -0.192513 (VIOLATED)
-wbs_dat_o[27]                           1.500000    1.691362   -0.191362 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[24]           1.500000    1.682400   -0.182400 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[15]           1.500000    1.678722   -0.178722 (VIOLATED)
-wbs_dat_o[26]                           1.500000    1.671409   -0.171409 (VIOLATED)
-wbs_dat_o[25]                           1.500000    1.666069   -0.166069 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[20]           1.500000    1.665719   -0.165719 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[16]           1.500000    1.662491   -0.162491 (VIOLATED)
-u_secure_boot_cp/unlock_enable          1.500000    1.659919   -0.159919 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[17]           1.500000    1.647747   -0.147747 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[11]           1.500000    1.643247   -0.143247 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[19]           1.500000    1.642779   -0.142779 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[20]           1.500000    1.635190   -0.135190 (VIOLATED)
-u_secure_boot_cp/wb_sel_i[0]            1.500000    1.623442   -0.123442 (VIOLATED)
-wbs_dat_o[29]                           1.500000    1.622588   -0.122588 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[31]           1.500000    1.622051   -0.122051 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[18]           1.500000    1.621626   -0.121626 (VIOLATED)
-wbs_dat_o[30]                           1.500000    1.619720   -0.119720 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[22]           1.500000    1.616963   -0.116963 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[23]           1.500000    1.612054   -0.112054 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[27]           1.500000    1.606016   -0.106016 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[7]            1.500000    1.601295   -0.101295 (VIOLATED)
-wbs_dat_i[22]                           1.499372    1.598907   -0.099534 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[20]           1.500000    1.588672   -0.088672 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[26]           1.500000    1.587433   -0.087433 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[25]           1.500000    1.584941   -0.084941 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[16]           1.500000    1.580739   -0.080739 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[22]           1.500000    1.577299   -0.077299 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[17]           1.500000    1.575865   -0.075865 (VIOLATED)
-wbs_dat_i[4]                            1.499372    1.574130   -0.074758 (VIOLATED)
-u_secure_boot_cp/wb_clk_i               1.500000    1.573480   -0.073480 (VIOLATED)
-u_secure_boot_cp/wb_stb_i               1.500000    1.571356   -0.071356 (VIOLATED)
-io_out[27]                              1.500000    1.563190   -0.063190 (VIOLATED)
-u_secure_boot_cp/wb_cyc_i               1.500000    1.560291   -0.060291 (VIOLATED)
-u_secure_boot_cp/wb_sel_i[3]            1.500000    1.555992   -0.055992 (VIOLATED)
-u_secure_boot_cp/group_suspended        1.500000    1.555644   -0.055644 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[18]           1.500000    1.555170   -0.055170 (VIOLATED)
-wbs_dat_i[1]                            1.499372    1.553872   -0.054501 (VIOLATED)
-wbs_dat_i[7]                            1.499372    1.550265   -0.050893 (VIOLATED)
-u_secure_boot_cp/wb_sel_i[1]            1.500000    1.545553   -0.045553 (VIOLATED)
-io_out[26]                              1.500000    1.545257   -0.045257 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[12]           1.500000    1.542610   -0.042610 (VIOLATED)
-wbs_dat_i[20]                           1.499372    1.539924   -0.040552 (VIOLATED)
-u_secure_boot_cp/wb_adr_i[2]            1.500000    1.537138   -0.037138 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[30]           1.500000    1.536652   -0.036652 (VIOLATED)
-u_secure_boot_cp/group_unlocked         1.500000    1.536619   -0.036619 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[29]           1.500000    1.534310   -0.034310 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[8]            1.500000    1.521186   -0.021186 (VIOLATED)
-wbs_adr_i[9]                            1.499372    1.516671   -0.017299 (VIOLATED)
-wbs_adr_i[10]                           1.499372    1.516579   -0.017207 (VIOLATED)
-wbs_adr_i[20]                           1.499372    1.511091   -0.011719 (VIOLATED)
-u_secure_boot_cp/wb_dat_i[5]            1.500000    1.504117   -0.004117 (VIOLATED)
+wbs_dat_o[20]                           1.500000    3.839422   -2.339422 (VIOLATED)
+wbs_dat_o[27]                           1.500000    3.665157   -2.165158 (VIOLATED)
+io_out[22]                              1.500000    3.478858   -1.978858 (VIOLATED)
+wbs_dat_o[2]                            1.500000    3.417551   -1.917551 (VIOLATED)
+io_out[21]                              1.500000    3.343598   -1.843598 (VIOLATED)
+io_out[23]                              1.500000    3.243164   -1.743164 (VIOLATED)
+io_out[24]                              1.500000    3.212844   -1.712844 (VIOLATED)
+wbs_dat_o[19]                           1.500000    3.180831   -1.680832 (VIOLATED)
+wbs_dat_o[4]                            1.500000    3.141607   -1.641607 (VIOLATED)
+wbs_dat_o[31]                           1.500000    3.104270   -1.604270 (VIOLATED)
+wbs_dat_o[9]                            1.500000    3.102822   -1.602822 (VIOLATED)
+wbs_dat_o[23]                           1.500000    3.072861   -1.572861 (VIOLATED)
+wbs_dat_o[26]                           1.500000    3.056923   -1.556923 (VIOLATED)
+u_hsm/wb_dat_o[20]                      1.500000    3.048306   -1.548306 (VIOLATED)
+wbs_dat_o[24]                           1.500000    3.006326   -1.506326 (VIOLATED)
+wbs_dat_o[21]                           1.500000    2.962566   -1.462566 (VIOLATED)
+wbs_dat_o[10]                           1.500000    2.961875   -1.461875 (VIOLATED)
+u_hsm/wb_dat_o[9]                       1.500000    2.933966   -1.433967 (VIOLATED)
+wbs_dat_o[17]                           1.500000    2.925427   -1.425427 (VIOLATED)
+u_hsm/wb_dat_o[17]                      1.500000    2.864297   -1.364297 (VIOLATED)
+u_hsm/wb_dat_o[27]                      1.500000    2.862672   -1.362672 (VIOLATED)
+u_hsm/wb_dat_o[23]                      1.500000    2.830013   -1.330013 (VIOLATED)
+u_hsm/wb_dat_o[2]                       1.500000    2.821099   -1.321099 (VIOLATED)
+u_hsm/wb_adr_i[0]                       1.500000    2.819739   -1.319739 (VIOLATED)
+io_out[25]                              1.500000    2.819148   -1.319148 (VIOLATED)
+u_hsm/wb_dat_o[26]                      1.500000    2.806545   -1.306545 (VIOLATED)
+u_hsm/wb_dat_o[10]                      1.500000    2.804707   -1.304707 (VIOLATED)
+u_hsm/wb_adr_i[6]                       1.500000    2.789386   -1.289386 (VIOLATED)
+u_hsm/boot_fail                         1.500000    2.776399   -1.276399 (VIOLATED)
+u_hsm/wb_cyc_i                          1.500000    2.763905   -1.263905 (VIOLATED)
+u_hsm/wb_dat_o[24]                      1.500000    2.758774   -1.258774 (VIOLATED)
+wbs_dat_o[29]                           1.500000    2.757378   -1.257378 (VIOLATED)
+wbs_dat_o[5]                            1.500000    2.741814   -1.241814 (VIOLATED)
+u_hsm/wb_dat_o[21]                      1.500000    2.731295   -1.231295 (VIOLATED)
+u_hsm/wb_adr_i[5]                       1.500000    2.700853   -1.200853 (VIOLATED)
+u_hsm/fsm_error                         1.500000    2.691662   -1.191662 (VIOLATED)
+wbs_dat_o[28]                           1.500000    2.686470   -1.186470 (VIOLATED)
+u_hsm/boot_valid                        1.500000    2.681082   -1.181082 (VIOLATED)
+u_hsm/wb_dat_o[19]                      1.500000    2.657846   -1.157847 (VIOLATED)
+wbs_ack_o                               1.500000    2.643484   -1.143484 (VIOLATED)
+wbs_dat_o[22]                           1.500000    2.637111   -1.137111 (VIOLATED)
+u_hsm/wb_dat_o[4]                       1.500000    2.635491   -1.135491 (VIOLATED)
+u_hsm/wb_dat_o[5]                       1.500000    2.601672   -1.101672 (VIOLATED)
+u_hsm/wb_dat_i[2]                       1.500000    2.595203   -1.095203 (VIOLATED)
+wbs_dat_o[11]                           1.500000    2.589221   -1.089222 (VIOLATED)
+wbs_dat_o[25]                           1.500000    2.583210   -1.083210 (VIOLATED)
+wbs_dat_o[30]                           1.500000    2.576670   -1.076670 (VIOLATED)
+u_hsm/wb_dat_o[25]                      1.500000    2.575026   -1.075026 (VIOLATED)
+wbs_dat_o[1]                            1.500000    2.565235   -1.065235 (VIOLATED)
+wbs_dat_o[13]                           1.500000    2.549126   -1.049126 (VIOLATED)
+wbs_dat_o[15]                           1.500000    2.538719   -1.038719 (VIOLATED)
+u_hsm/wb_dat_o[1]                       1.500000    2.521724   -1.021724 (VIOLATED)
+wbs_dat_o[0]                            1.500000    2.510331   -1.010331 (VIOLATED)
+u_hsm/safe_led                          1.500000    2.506970   -1.006970 (VIOLATED)
+u_hsm/wb_dat_o[31]                      1.500000    2.491735   -0.991735 (VIOLATED)
+u_hsm/wb_dat_o[28]                      1.500000    2.465542   -0.965542 (VIOLATED)
+u_hsm/wb_dat_o[0]                       1.500000    2.462527   -0.962527 (VIOLATED)
+u_hsm/wb_dat_o[22]                      1.500000    2.455691   -0.955691 (VIOLATED)
+u_hsm/wb_ack_o                          1.500000    2.452866   -0.952866 (VIOLATED)
+u_hsm/wb_adr_i[7]                       1.500000    2.433922   -0.933922 (VIOLATED)
+u_hsm/security_breach                   1.500000    2.416003   -0.916003 (VIOLATED)
+wbs_dat_o[3]                            1.500000    2.398568   -0.898568 (VIOLATED)
+wbs_dat_o[14]                           1.500000    2.395546   -0.895546 (VIOLATED)
+u_hsm/wb_dat_o[11]                      1.500000    2.394275   -0.894275 (VIOLATED)
+u_hsm/wb_dat_o[15]                      1.500000    2.381993   -0.881993 (VIOLATED)
+u_hsm/wb_dat_o[30]                      1.500000    2.374907   -0.874907 (VIOLATED)
+u_hsm/wb_dat_o[13]                      1.500000    2.371125   -0.871125 (VIOLATED)
+u_hsm/wb_dat_o[29]                      1.500000    2.350254   -0.850254 (VIOLATED)
+u_hsm/wb_dat_o[3]                       1.500000    2.341704   -0.841704 (VIOLATED)
+wbs_dat_o[6]                            1.500000    2.328905   -0.828905 (VIOLATED)
+wbs_dat_o[18]                           1.500000    2.304724   -0.804724 (VIOLATED)
+wbs_dat_o[8]                            1.500000    2.291445   -0.791445 (VIOLATED)
+wbs_dat_o[12]                           1.500000    2.280782   -0.780782 (VIOLATED)
+wbs_dat_o[16]                           1.500000    2.267979   -0.767980 (VIOLATED)
+u_hsm/wb_adr_i[4]                       1.500000    2.253071   -0.753071 (VIOLATED)
+u_hsm/wb_dat_i[1]                       1.500000    2.248724   -0.748724 (VIOLATED)
+io_out[26]                              1.500000    2.241299   -0.741299 (VIOLATED)
+wbs_dat_o[7]                            1.500000    2.241205   -0.741205 (VIOLATED)
+wbs_adr_i[4]                            1.499372    2.232601   -0.733229 (VIOLATED)
+u_hsm/wb_dat_i[3]                       1.500000    2.232251   -0.732251 (VIOLATED)
+u_hsm/vault_is_locked                   1.500000    2.226260   -0.726260 (VIOLATED)
+u_hsm/wb_dat_o[14]                      1.500000    2.216365   -0.716365 (VIOLATED)
+u_hsm/wb_adr_i[3]                       1.500000    2.195479   -0.695479 (VIOLATED)
+u_hsm/wb_dat_o[6]                       1.500000    2.189062   -0.689062 (VIOLATED)
+u_hsm/wb_dat_o[8]                       1.500000    2.156240   -0.656240 (VIOLATED)
+u_hsm/wb_dat_o[12]                      1.500000    2.142865   -0.642865 (VIOLATED)
+wbs_dat_i[1]                            1.499372    2.135717   -0.636345 (VIOLATED)
+u_hsm/wb_dat_o[18]                      1.500000    2.136234   -0.636234 (VIOLATED)
+u_hsm/wb_dat_o[16]                      1.500000    2.129153   -0.629153 (VIOLATED)
+u_hsm/wb_dat_o[7]                       1.500000    2.123335   -0.623335 (VIOLATED)
+wbs_adr_i[6]                            1.499372    2.115465   -0.616093 (VIOLATED)
+wbs_adr_i[3]                            1.499372    2.074248   -0.574876 (VIOLATED)
+u_hsm/wb_stb_i                          1.500000    2.068993   -0.568993 (VIOLATED)
+u_hsm/clk                               1.500000    2.032490   -0.532490 (VIOLATED)
+wbs_dat_i[2]                            1.499372    1.990292   -0.490920 (VIOLATED)
+u_hsm/wb_dat_i[7]                       1.500000    1.985163   -0.485163 (VIOLATED)
+u_hsm/wb_we_i                           1.500000    1.918562   -0.418562 (VIOLATED)
+u_hsm/wb_adr_i[2]                       1.500000    1.894928   -0.394928 (VIOLATED)
+wbs_adr_i[2]                            1.499372    1.888977   -0.389605 (VIOLATED)
+wbs_adr_i[7]                            1.499372    1.881521   -0.382149 (VIOLATED)
+u_hsm/wb_adr_i[1]                       1.500000    1.866534   -0.366534 (VIOLATED)
+u_hsm/wb_dat_i[0]                       1.500000    1.856232   -0.356232 (VIOLATED)
+u_hsm/reset                             1.500000    1.851189   -0.351189 (VIOLATED)
+wbs_we_i                                1.499372    1.800514   -0.301142 (VIOLATED)
+wbs_adr_i[5]                            1.499372    1.792189   -0.292817 (VIOLATED)
+wbs_adr_i[0]                            1.499372    1.775217   -0.275845 (VIOLATED)
+wbs_dat_i[0]                            1.499372    1.757830   -0.258458 (VIOLATED)
+user_irq[0]                             1.500000    1.754781   -0.254781 (VIOLATED)
+wb_rst_i                                1.499372    1.747769   -0.248397 (VIOLATED)
+wbs_dat_i[3]                            1.499372    1.746920   -0.247548 (VIOLATED)
+u_hsm/wb_dat_i[6]                       1.500000    1.736351   -0.236351 (VIOLATED)
+u_hsm/wb_dat_i[5]                       1.500000    1.735865   -0.235866 (VIOLATED)
+wbs_cyc_i                               1.499372    1.673751   -0.174379 (VIOLATED)
+wbs_dat_i[7]                            1.499372    1.650873   -0.151501 (VIOLATED)
+wbs_stb_i                               1.499372    1.636210   -0.136838 (VIOLATED)
+u_hsm/irq                               1.500000    1.574348   -0.074349 (VIOLATED)
+wbs_adr_i[1]                            1.499372    1.551360   -0.051988 (VIOLATED)
+u_hsm/wb_dat_i[4]                       1.500000    1.543703   -0.043703 (VIOLATED)
 
 max capacitance
 
 Pin                                        Limit         Cap       Slack
 ------------------------------------------------------------------------
-u_secure_boot_cp/wb_dat_o[14]           0.200000    0.591581   -0.391581 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[15]           0.200000    0.562174   -0.362174 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[11]           0.200000    0.542819   -0.342819 (VIOLATED)
-wbs_dat_i[10]                           0.200000    0.513791   -0.313791 (VIOLATED)
-wbs_dat_i[4]                            0.200000    0.485998   -0.285998 (VIOLATED)
-wbs_dat_i[1]                            0.200000    0.476820   -0.276820 (VIOLATED)
-wbs_dat_i[22]                           0.200000    0.473290   -0.273290 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[3]            0.200000    0.471002   -0.271002 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[10]           0.200000    0.470344   -0.270344 (VIOLATED)
-wbs_adr_i[10]                           0.200000    0.469052   -0.269051 (VIOLATED)
-wbs_dat_i[16]                           0.200000    0.466623   -0.266623 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[12]           0.200000    0.466488   -0.266488 (VIOLATED)
-u_secure_boot_cp/debug_enable           0.200000    0.465461   -0.265461 (VIOLATED)
-wbs_adr_i[0]                            0.200000    0.458255   -0.258255 (VIOLATED)
-wbs_dat_i[20]                           0.200000    0.457490   -0.257490 (VIOLATED)
-wbs_dat_i[7]                            0.200000    0.457014   -0.257014 (VIOLATED)
-wbs_adr_i[9]                            0.200000    0.455640   -0.255640 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[21]           0.200000    0.451012   -0.251012 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[2]            0.200000    0.450194   -0.250194 (VIOLATED)
-wbs_we_i                                0.200000    0.449566   -0.249566 (VIOLATED)
-wbs_dat_i[17]                           0.200000    0.447595   -0.247595 (VIOLATED)
-wbs_adr_i[20]                           0.200000    0.447066   -0.247066 (VIOLATED)
-wb_rst_i                                0.200000    0.446462   -0.246462 (VIOLATED)
-wbs_dat_i[6]                            0.200000    0.437951   -0.237951 (VIOLATED)
-wbs_dat_i[18]                           0.200000    0.433547   -0.233547 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[8]            0.200000    0.429552   -0.229552 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[4]            0.200000    0.428827   -0.228827 (VIOLATED)
-wbs_dat_i[12]                           0.200000    0.424317   -0.224317 (VIOLATED)
-wbs_sel_i[2]                            0.200000    0.423170   -0.223170 (VIOLATED)
-wbs_dat_i[24]                           0.200000    0.421430   -0.221430 (VIOLATED)
-wbs_dat_i[9]                            0.200000    0.420048   -0.220048 (VIOLATED)
-u_secure_boot_cp/safe_led               0.200000    0.419965   -0.219965 (VIOLATED)
-wbs_dat_i[23]                           0.200000    0.416945   -0.216945 (VIOLATED)
-wbs_adr_i[6]                            0.200000    0.414834   -0.214834 (VIOLATED)
-wbs_dat_i[25]                           0.200000    0.410498   -0.210498 (VIOLATED)
-wbs_sel_i[3]                            0.200000    0.410017   -0.210017 (VIOLATED)
-u_secure_boot_cp/user_irq               0.200000    0.407359   -0.207359 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[5]            0.200000    0.406828   -0.206828 (VIOLATED)
-wbs_dat_i[19]                           0.200000    0.406573   -0.206573 (VIOLATED)
-u_secure_boot_cp/wb_ack_o               0.200000    0.405449   -0.205449 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[9]            0.200000    0.405373   -0.205373 (VIOLATED)
-wbs_dat_i[30]                           0.200000    0.404829   -0.204829 (VIOLATED)
-wbs_dat_i[28]                           0.200000    0.403402   -0.203402 (VIOLATED)
-wbs_sel_i[0]                            0.200000    0.399239   -0.199239 (VIOLATED)
-wbs_dat_i[15]                           0.200000    0.397310   -0.197310 (VIOLATED)
-wbs_adr_i[11]                           0.200000    0.389948   -0.189948 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[28]           0.200000    0.389749   -0.189749 (VIOLATED)
-wbs_adr_i[2]                            0.200000    0.388853   -0.188853 (VIOLATED)
-wbs_dat_i[31]                           0.200000    0.386347   -0.186347 (VIOLATED)
-wbs_sel_i[1]                            0.200000    0.385303   -0.185303 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[1]            0.200000    0.384749   -0.184749 (VIOLATED)
-u_secure_boot_cp/fsm_error              0.200000    0.384307   -0.184307 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[0]            0.200000    0.383531   -0.183531 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[13]           0.200000    0.382646   -0.182646 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[31]           0.200000    0.380793   -0.180793 (VIOLATED)
-wbs_adr_i[16]                           0.200000    0.380114   -0.180114 (VIOLATED)
-wbs_adr_i[17]                           0.200000    0.379772   -0.179772 (VIOLATED)
-wbs_adr_i[3]                            0.200000    0.372657   -0.172657 (VIOLATED)
-wbs_stb_i                               0.200000    0.370570   -0.170570 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[6]            0.200000    0.370425   -0.170425 (VIOLATED)
-wbs_adr_i[26]                           0.200000    0.369887   -0.169887 (VIOLATED)
-wbs_cyc_i                               0.200000    0.368917   -0.168917 (VIOLATED)
-wbs_dat_i[8]                            0.200000    0.366917   -0.166917 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[7]            0.200000    0.366695   -0.166695 (VIOLATED)
-wb_clk_i                                0.200000    0.362935   -0.162935 (VIOLATED)
-wbs_adr_i[31]                           0.200000    0.361915   -0.161915 (VIOLATED)
-u_secure_boot_cp/security_breach        0.200000    0.359599   -0.159599 (VIOLATED)
-wbs_dat_i[5]                            0.200000    0.357658   -0.157658 (VIOLATED)
-wbs_dat_i[21]                           0.200000    0.356415   -0.156415 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[24]           0.200000    0.356413   -0.156413 (VIOLATED)
-wbs_adr_i[5]                            0.200000    0.356388   -0.156388 (VIOLATED)
-wbs_adr_i[1]                            0.200000    0.354833   -0.154833 (VIOLATED)
-wbs_dat_i[3]                            0.200000    0.353753   -0.153753 (VIOLATED)
-u_secure_boot_cp/unlock_enable          0.200000    0.352931   -0.152931 (VIOLATED)
-wbs_dat_i[0]                            0.200000    0.352651   -0.152651 (VIOLATED)
-wbs_dat_i[2]                            0.200000    0.349373   -0.149373 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[16]           0.200000    0.348839   -0.148839 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[17]           0.200000    0.346266   -0.146266 (VIOLATED)
-wbs_adr_i[4]                            0.200000    0.345077   -0.145077 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[20]           0.200000    0.343964   -0.143964 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[19]           0.200000    0.343407   -0.143407 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[18]           0.200000    0.342436   -0.142436 (VIOLATED)
-wbs_adr_i[8]                            0.200000    0.339305   -0.139305 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[27]           0.200000    0.337395   -0.137395 (VIOLATED)
-wbs_adr_i[7]                            0.200000    0.336809   -0.136809 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[23]           0.200000    0.336724   -0.136724 (VIOLATED)
-wbs_dat_i[11]                           0.200000    0.335159   -0.135159 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[26]           0.200000    0.333816   -0.133816 (VIOLATED)
-wbs_dat_i[14]                           0.200000    0.333503   -0.133503 (VIOLATED)
-wbs_dat_i[13]                           0.200000    0.333357   -0.133357 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[22]           0.200000    0.331655   -0.131655 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[25]           0.200000    0.331135   -0.131135 (VIOLATED)
-wbs_dat_i[27]                           0.200000    0.328927   -0.128927 (VIOLATED)
-u_secure_boot_cp/group_suspended        0.200000    0.325937   -0.125937 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[30]           0.200000    0.323222   -0.123222 (VIOLATED)
-io_in[14]                               0.200000    0.323142   -0.123142 (VIOLATED)
-io_in[15]                               0.200000    0.322787   -0.122787 (VIOLATED)
-u_secure_boot_cp/wb_dat_o[29]           0.200000    0.322386   -0.122386 (VIOLATED)
-u_secure_boot_cp/group_unlocked         0.200000    0.321006   -0.121006 (VIOLATED)
-wbs_adr_i[13]                           0.200000    0.317697   -0.117697 (VIOLATED)
-wbs_adr_i[12]                           0.200000    0.316871   -0.116871 (VIOLATED)
-wbs_adr_i[14]                           0.200000    0.316281   -0.116281 (VIOLATED)
-wbs_adr_i[25]                           0.200000    0.314605   -0.114605 (VIOLATED)
-wbs_adr_i[15]                           0.200000    0.314479   -0.114479 (VIOLATED)
-io_in[16]                               0.200000    0.312057   -0.112057 (VIOLATED)
-wbs_adr_i[18]                           0.200000    0.310218   -0.110218 (VIOLATED)
-wbs_adr_i[19]                           0.200000    0.308298   -0.108298 (VIOLATED)
-wbs_dat_i[26]                           0.200000    0.307918   -0.107918 (VIOLATED)
-wbs_adr_i[23]                           0.200000    0.305299   -0.105299 (VIOLATED)
-wbs_adr_i[21]                           0.200000    0.305283   -0.105283 (VIOLATED)
-io_in[13]                               0.200000    0.304177   -0.104177 (VIOLATED)
-wbs_adr_i[22]                           0.200000    0.304172   -0.104172 (VIOLATED)
-wbs_dat_i[29]                           0.200000    0.303002   -0.103002 (VIOLATED)
-io_in[12]                               0.200000    0.301883   -0.101883 (VIOLATED)
-wbs_adr_i[24]                           0.200000    0.301178   -0.101178 (VIOLATED)
-wbs_adr_i[27]                           0.200000    0.296180   -0.096180 (VIOLATED)
-wbs_adr_i[28]                           0.200000    0.294489   -0.094489 (VIOLATED)
-wbs_adr_i[29]                           0.200000    0.293187   -0.093187 (VIOLATED)
-wbs_adr_i[30]                           0.200000    0.290090   -0.090090 (VIOLATED)
-io_in[17]                               0.200000    0.278999   -0.078999 (VIOLATED)
-u_secure_boot_cp/group_error            0.200000    0.270413   -0.070413 (VIOLATED)
-io_in[18]                               0.200000    0.243417   -0.043417 (VIOLATED)
-io_in[11]                               0.200000    0.237916   -0.037916 (VIOLATED)
-io_in[10]                               0.200000    0.228511   -0.028511 (VIOLATED)
-io_in[19]                               0.200000    0.216512   -0.016512 (VIOLATED)
-io_in[20]                               0.200000    0.211822   -0.011822 (VIOLATED)
-io_in[7]                                0.200000    0.201709   -0.001709 (VIOLATED)
+wbs_adr_i[4]                            0.200000    0.661073   -0.461073 (VIOLATED)
+u_hsm/wb_dat_o[20]                      0.200000    0.647633   -0.447633 (VIOLATED)
+wbs_adr_i[6]                            0.200000    0.646111   -0.446111 (VIOLATED)
+wbs_dat_i[1]                            0.200000    0.630032   -0.430032 (VIOLATED)
+u_hsm/wb_dat_o[27]                      0.200000    0.615076   -0.415076 (VIOLATED)
+wbs_adr_i[3]                            0.200000    0.612436   -0.412436 (VIOLATED)
+u_hsm/wb_dat_o[2]                       0.200000    0.608893   -0.408893 (VIOLATED)
+u_hsm/wb_dat_o[9]                       0.200000    0.608613   -0.408613 (VIOLATED)
+wbs_dat_i[2]                            0.200000    0.606802   -0.406802 (VIOLATED)
+u_hsm/boot_fail                         0.200000    0.600417   -0.400417 (VIOLATED)
+u_hsm/wb_dat_o[17]                      0.200000    0.599779   -0.399779 (VIOLATED)
+u_hsm/wb_dat_o[23]                      0.200000    0.590591   -0.390591 (VIOLATED)
+u_hsm/wb_dat_o[10]                      0.200000    0.588530   -0.388530 (VIOLATED)
+u_hsm/wb_dat_o[26]                      0.200000    0.585375   -0.385375 (VIOLATED)
+u_hsm/boot_valid                        0.200000    0.583102   -0.383102 (VIOLATED)
+u_hsm/wb_dat_o[24]                      0.200000    0.575672   -0.375672 (VIOLATED)
+wbs_adr_i[7]                            0.200000    0.573238   -0.373239 (VIOLATED)
+u_hsm/wb_dat_o[21]                      0.200000    0.573060   -0.373060 (VIOLATED)
+wbs_adr_i[0]                            0.200000    0.569743   -0.369743 (VIOLATED)
+u_hsm/fsm_error                         0.200000    0.569403   -0.369402 (VIOLATED)
+wbs_adr_i[2]                            0.200000    0.566100   -0.366100 (VIOLATED)
+wbs_adr_i[5]                            0.200000    0.565677   -0.365677 (VIOLATED)
+u_hsm/wb_dat_o[19]                      0.200000    0.558343   -0.358343 (VIOLATED)
+u_hsm/wb_dat_o[4]                       0.200000    0.557343   -0.357343 (VIOLATED)
+u_hsm/safe_led                          0.200000    0.546630   -0.346630 (VIOLATED)
+wbs_cyc_i                               0.200000    0.542927   -0.342927 (VIOLATED)
+u_hsm/wb_dat_o[25]                      0.200000    0.541393   -0.341393 (VIOLATED)
+u_hsm/wb_dat_o[5]                       0.200000    0.539799   -0.339799 (VIOLATED)
+u_hsm/wb_dat_o[31]                      0.200000    0.536568   -0.336568 (VIOLATED)
+wbs_we_i                                0.200000    0.531216   -0.331216 (VIOLATED)
+wbs_dat_i[3]                            0.200000    0.531123   -0.331123 (VIOLATED)
+u_hsm/wb_dat_o[1]                       0.200000    0.528092   -0.328092 (VIOLATED)
+wbs_dat_i[0]                            0.200000    0.519104   -0.319104 (VIOLATED)
+wb_rst_i                                0.200000    0.517625   -0.317625 (VIOLATED)
+u_hsm/wb_dat_o[0]                       0.200000    0.517000   -0.317000 (VIOLATED)
+u_hsm/wb_dat_o[28]                      0.200000    0.513323   -0.313323 (VIOLATED)
+u_hsm/wb_dat_o[22]                      0.200000    0.512813   -0.312813 (VIOLATED)
+u_hsm/wb_ack_o                          0.200000    0.511217   -0.311217 (VIOLATED)
+u_hsm/security_breach                   0.200000    0.511072   -0.311072 (VIOLATED)
+wbs_dat_i[7]                            0.200000    0.501035   -0.301035 (VIOLATED)
+wbs_stb_i                               0.200000    0.498670   -0.298670 (VIOLATED)
+u_hsm/wb_dat_o[11]                      0.200000    0.498639   -0.298639 (VIOLATED)
+u_hsm/wb_dat_o[29]                      0.200000    0.498022   -0.298022 (VIOLATED)
+u_hsm/wb_dat_o[30]                      0.200000    0.495917   -0.295917 (VIOLATED)
+u_hsm/wb_dat_o[13]                      0.200000    0.494460   -0.294460 (VIOLATED)
+u_hsm/wb_dat_o[15]                      0.200000    0.493724   -0.293724 (VIOLATED)
+u_hsm/wb_dat_o[3]                       0.200000    0.488944   -0.288944 (VIOLATED)
+wbs_adr_i[1]                            0.200000    0.467279   -0.267279 (VIOLATED)
+u_hsm/vault_is_locked                   0.200000    0.465459   -0.265459 (VIOLATED)
+u_hsm/wb_dat_o[14]                      0.200000    0.461922   -0.261922 (VIOLATED)
+u_hsm/wb_dat_o[6]                       0.200000    0.454183   -0.254183 (VIOLATED)
+u_hsm/wb_dat_o[18]                      0.200000    0.449036   -0.249036 (VIOLATED)
+u_hsm/wb_dat_o[8]                       0.200000    0.447256   -0.247256 (VIOLATED)
+u_hsm/wb_dat_o[16]                      0.200000    0.446558   -0.246558 (VIOLATED)
+u_hsm/wb_dat_o[12]                      0.200000    0.444752   -0.244752 (VIOLATED)
+wb_clk_i                                0.200000    0.441620   -0.241620 (VIOLATED)
+u_hsm/wb_dat_o[7]                       0.200000    0.440816   -0.240816 (VIOLATED)
+wbs_dat_i[6]                            0.200000    0.429757   -0.229757 (VIOLATED)
+wbs_dat_i[5]                            0.200000    0.429196   -0.229196 (VIOLATED)
+wbs_dat_i[4]                            0.200000    0.405047   -0.205047 (VIOLATED)
+wbs_sel_i[0]                            0.200000    0.341237   -0.141237 (VIOLATED)
+u_hsm/irq                               0.200000    0.333485   -0.133485 (VIOLATED)
+wbs_sel_i[1]                            0.200000    0.328995   -0.128995 (VIOLATED)
+wbs_sel_i[3]                            0.200000    0.301771   -0.101771 (VIOLATED)
+wbs_dat_i[23]                           0.200000    0.298981   -0.098981 (VIOLATED)
+wbs_sel_i[2]                            0.200000    0.292647   -0.092647 (VIOLATED)
+wbs_adr_i[11]                           0.200000    0.271334   -0.071334 (VIOLATED)
+wbs_dat_i[26]                           0.200000    0.267392   -0.067392 (VIOLATED)
+wbs_adr_i[13]                           0.200000    0.264644   -0.064644 (VIOLATED)
+wbs_adr_i[16]                           0.200000    0.260670   -0.060670 (VIOLATED)
+wbs_adr_i[17]                           0.200000    0.255754   -0.055754 (VIOLATED)
+wbs_adr_i[18]                           0.200000    0.253432   -0.053432 (VIOLATED)
+wbs_adr_i[10]                           0.200000    0.251090   -0.051090 (VIOLATED)
+wbs_adr_i[19]                           0.200000    0.250535   -0.050535 (VIOLATED)
+wbs_adr_i[14]                           0.200000    0.249482   -0.049482 (VIOLATED)
+wbs_dat_i[9]                            0.200000    0.248075   -0.048075 (VIOLATED)
+wbs_adr_i[20]                           0.200000    0.248043   -0.048043 (VIOLATED)
+wbs_dat_i[8]                            0.200000    0.247053   -0.047053 (VIOLATED)
+wbs_adr_i[21]                           0.200000    0.246229   -0.046229 (VIOLATED)
+wbs_dat_i[27]                           0.200000    0.244489   -0.044489 (VIOLATED)
+wbs_adr_i[22]                           0.200000    0.242840   -0.042840 (VIOLATED)
+wbs_dat_i[10]                           0.200000    0.238404   -0.038404 (VIOLATED)
+wbs_adr_i[9]                            0.200000    0.236926   -0.036926 (VIOLATED)
+wbs_adr_i[8]                            0.200000    0.235953   -0.035953 (VIOLATED)
+wbs_dat_i[11]                           0.200000    0.235141   -0.035141 (VIOLATED)
+wbs_dat_i[30]                           0.200000    0.235009   -0.035009 (VIOLATED)
+wbs_dat_i[16]                           0.200000    0.232354   -0.032354 (VIOLATED)
+wbs_dat_i[12]                           0.200000    0.231634   -0.031634 (VIOLATED)
+wbs_dat_i[13]                           0.200000    0.229828   -0.029828 (VIOLATED)
+wbs_dat_i[15]                           0.200000    0.227939   -0.027939 (VIOLATED)
+wbs_adr_i[30]                           0.200000    0.227931   -0.027931 (VIOLATED)
+wbs_adr_i[12]                           0.200000    0.227576   -0.027576 (VIOLATED)
+wbs_dat_i[14]                           0.200000    0.227375   -0.027375 (VIOLATED)
+wbs_adr_i[29]                           0.200000    0.225090   -0.025090 (VIOLATED)
+wbs_adr_i[15]                           0.200000    0.224926   -0.024926 (VIOLATED)
+wbs_dat_i[17]                           0.200000    0.223754   -0.023754 (VIOLATED)
+wbs_dat_i[31]                           0.200000    0.222186   -0.022186 (VIOLATED)
+wbs_dat_i[18]                           0.200000    0.221295   -0.021295 (VIOLATED)
+wbs_adr_i[31]                           0.200000    0.219988   -0.019988 (VIOLATED)
+wbs_dat_i[19]                           0.200000    0.218431   -0.018431 (VIOLATED)
+wbs_dat_i[20]                           0.200000    0.218215   -0.018215 (VIOLATED)
+wbs_dat_i[21]                           0.200000    0.215451   -0.015451 (VIOLATED)
+wbs_dat_i[22]                           0.200000    0.215393   -0.015393 (VIOLATED)
+wbs_dat_i[24]                           0.200000    0.211295   -0.011295 (VIOLATED)
+wbs_dat_i[25]                           0.200000    0.209652   -0.009652 (VIOLATED)
+wbs_dat_i[28]                           0.200000    0.206441   -0.006441 (VIOLATED)
+wbs_adr_i[25]                           0.200000    0.204774   -0.004774 (VIOLATED)
+wbs_adr_i[23]                           0.200000    0.204402   -0.004402 (VIOLATED)
+wbs_adr_i[24]                           0.200000    0.203179   -0.003179 (VIOLATED)
+wbs_dat_i[29]                           0.200000    0.203068   -0.003068 (VIOLATED)
+wbs_adr_i[28]                           0.200000    0.200000    0.000000 (VIOLATED)
 
 
 
 ===========================================================================
 report_parasitic_annotation -report_unannotated
 ============================================================================
-Found 508 unannotated drivers.
+Found 526 unannotated drivers.
  analog_io[0]
  analog_io[10]
  analog_io[11]
@@ -352,7 +324,18 @@ Found 508 unannotated drivers.
  analog_io[8]
  analog_io[9]
  io_in[0]
+ io_in[10]
+ io_in[11]
+ io_in[12]
+ io_in[13]
+ io_in[14]
+ io_in[15]
+ io_in[16]
+ io_in[17]
+ io_in[18]
+ io_in[19]
  io_in[1]
+ io_in[20]
  io_in[21]
  io_in[22]
  io_in[23]
@@ -632,6 +615,36 @@ Found 508 unannotated drivers.
  la_oenb[99]
  la_oenb[9]
  user_clock2
+ gen_io_out_low0\[0\].u_tie_io_out/HI
+ gen_io_out_low0\[1\].u_tie_io_out/HI
+ gen_io_out_low0\[2\].u_tie_io_out/HI
+ gen_io_out_low0\[3\].u_tie_io_out/HI
+ gen_io_out_low0\[4\].u_tie_io_out/HI
+ gen_io_out_low1\[10\].u_tie_io_out/HI
+ gen_io_out_low1\[11\].u_tie_io_out/HI
+ gen_io_out_low1\[12\].u_tie_io_out/HI
+ gen_io_out_low1\[13\].u_tie_io_out/HI
+ gen_io_out_low1\[14\].u_tie_io_out/HI
+ gen_io_out_low1\[15\].u_tie_io_out/HI
+ gen_io_out_low1\[16\].u_tie_io_out/HI
+ gen_io_out_low1\[17\].u_tie_io_out/HI
+ gen_io_out_low1\[18\].u_tie_io_out/HI
+ gen_io_out_low1\[19\].u_tie_io_out/HI
+ gen_io_out_low1\[20\].u_tie_io_out/HI
+ gen_io_out_low1\[5\].u_tie_io_out/HI
+ gen_io_out_low1\[6\].u_tie_io_out/HI
+ gen_io_out_low1\[7\].u_tie_io_out/HI
+ gen_io_out_low1\[8\].u_tie_io_out/HI
+ gen_io_out_low1\[9\].u_tie_io_out/HI
+ gen_io_out_low2\[29\].u_tie_io_out/HI
+ gen_io_out_low2\[30\].u_tie_io_out/HI
+ gen_io_out_low2\[31\].u_tie_io_out/HI
+ gen_io_out_low2\[32\].u_tie_io_out/HI
+ gen_io_out_low2\[33\].u_tie_io_out/HI
+ gen_io_out_low2\[34\].u_tie_io_out/HI
+ gen_io_out_low2\[35\].u_tie_io_out/HI
+ gen_io_out_low2\[36\].u_tie_io_out/HI
+ gen_io_out_low2\[37\].u_tie_io_out/HI
  gen_irq\[1\].u_tie_irq/HI
  gen_irq\[2\].u_tie_irq/HI
  gen_la\[0\].u_tie_la/HI
@@ -762,86 +775,63 @@ Found 508 unannotated drivers.
  gen_la\[98\].u_tie_la/HI
  gen_la\[99\].u_tie_la/HI
  gen_la\[9\].u_tie_la/HI
- genblk3\[0\].u_tie_io_out_low0/HI
- genblk3\[1\].u_tie_io_out_low0/HI
- genblk3\[2\].u_tie_io_out_low0/HI
- genblk3\[3\].u_tie_io_out_low0/HI
- genblk3\[4\].u_tie_io_out_low0/HI
- genblk4\[10\].u_tie_io_out_low1/HI
- genblk4\[11\].u_tie_io_out_low1/HI
- genblk4\[12\].u_tie_io_out_low1/HI
- genblk4\[13\].u_tie_io_out_low1/HI
- genblk4\[14\].u_tie_io_out_low1/HI
- genblk4\[15\].u_tie_io_out_low1/HI
- genblk4\[16\].u_tie_io_out_low1/HI
- genblk4\[17\].u_tie_io_out_low1/HI
- genblk4\[18\].u_tie_io_out_low1/HI
- genblk4\[19\].u_tie_io_out_low1/HI
- genblk4\[20\].u_tie_io_out_low1/HI
- genblk4\[5\].u_tie_io_out_low1/HI
- genblk4\[6\].u_tie_io_out_low1/HI
- genblk4\[7\].u_tie_io_out_low1/HI
- genblk4\[8\].u_tie_io_out_low1/HI
- genblk4\[9\].u_tie_io_out_low1/HI
- genblk5\[29\].u_tie_io_out_low2/HI
- genblk5\[30\].u_tie_io_out_low2/HI
- genblk5\[31\].u_tie_io_out_low2/HI
- genblk5\[32\].u_tie_io_out_low2/HI
- genblk5\[33\].u_tie_io_out_low2/HI
- genblk5\[34\].u_tie_io_out_low2/HI
- genblk5\[35\].u_tie_io_out_low2/HI
- genblk5\[36\].u_tie_io_out_low2/HI
- genblk5\[37\].u_tie_io_out_low2/HI
- genblk6\[0\].u_tie_io_oeb_hi0/LO
- genblk6\[1\].u_tie_io_oeb_hi0/LO
- genblk6\[2\].u_tie_io_oeb_hi0/LO
- genblk6\[3\].u_tie_io_oeb_hi0/LO
- genblk6\[4\].u_tie_io_oeb_hi0/LO
- genblk7\[10\].u_tie_io_oeb_hi1/LO
- genblk7\[11\].u_tie_io_oeb_hi1/LO
- genblk7\[12\].u_tie_io_oeb_hi1/LO
- genblk7\[13\].u_tie_io_oeb_hi1/LO
- genblk7\[14\].u_tie_io_oeb_hi1/LO
- genblk7\[15\].u_tie_io_oeb_hi1/LO
- genblk7\[16\].u_tie_io_oeb_hi1/LO
- genblk7\[17\].u_tie_io_oeb_hi1/LO
- genblk7\[18\].u_tie_io_oeb_hi1/LO
- genblk7\[19\].u_tie_io_oeb_hi1/LO
- genblk7\[20\].u_tie_io_oeb_hi1/LO
- genblk7\[5\].u_tie_io_oeb_hi1/LO
- genblk7\[6\].u_tie_io_oeb_hi1/LO
- genblk7\[7\].u_tie_io_oeb_hi1/LO
- genblk7\[8\].u_tie_io_oeb_hi1/LO
- genblk7\[9\].u_tie_io_oeb_hi1/LO
- genblk8\[21\].u_tie_io_oeb_lo2/HI
- genblk8\[22\].u_tie_io_oeb_lo2/HI
- genblk8\[23\].u_tie_io_oeb_lo2/HI
- genblk8\[24\].u_tie_io_oeb_lo2/HI
- genblk8\[25\].u_tie_io_oeb_lo2/HI
- genblk8\[26\].u_tie_io_oeb_lo2/HI
- genblk8\[27\].u_tie_io_oeb_lo2/HI
- genblk8\[28\].u_tie_io_oeb_lo2/HI
- genblk9\[29\].u_tie_io_oeb_hi3/LO
- genblk9\[30\].u_tie_io_oeb_hi3/LO
- genblk9\[31\].u_tie_io_oeb_hi3/LO
- genblk9\[32\].u_tie_io_oeb_hi3/LO
- genblk9\[33\].u_tie_io_oeb_hi3/LO
- genblk9\[34\].u_tie_io_oeb_hi3/LO
- genblk9\[35\].u_tie_io_oeb_hi3/LO
- genblk9\[36\].u_tie_io_oeb_hi3/LO
- genblk9\[37\].u_tie_io_oeb_hi3/LO
+ gen_oeb_hi0\[0\].u_tie_oeb/LO
+ gen_oeb_hi0\[10\].u_tie_oeb/LO
+ gen_oeb_hi0\[11\].u_tie_oeb/LO
+ gen_oeb_hi0\[12\].u_tie_oeb/LO
+ gen_oeb_hi0\[13\].u_tie_oeb/LO
+ gen_oeb_hi0\[14\].u_tie_oeb/LO
+ gen_oeb_hi0\[15\].u_tie_oeb/LO
+ gen_oeb_hi0\[16\].u_tie_oeb/LO
+ gen_oeb_hi0\[17\].u_tie_oeb/LO
+ gen_oeb_hi0\[18\].u_tie_oeb/LO
+ gen_oeb_hi0\[19\].u_tie_oeb/LO
+ gen_oeb_hi0\[1\].u_tie_oeb/LO
+ gen_oeb_hi0\[20\].u_tie_oeb/LO
+ gen_oeb_hi0\[2\].u_tie_oeb/LO
+ gen_oeb_hi0\[3\].u_tie_oeb/LO
+ gen_oeb_hi0\[4\].u_tie_oeb/LO
+ gen_oeb_hi0\[5\].u_tie_oeb/LO
+ gen_oeb_hi0\[6\].u_tie_oeb/LO
+ gen_oeb_hi0\[7\].u_tie_oeb/LO
+ gen_oeb_hi0\[8\].u_tie_oeb/LO
+ gen_oeb_hi0\[9\].u_tie_oeb/LO
+ gen_oeb_hi1\[27\].u_tie_oeb/LO
+ gen_oeb_hi1\[28\].u_tie_oeb/LO
+ gen_oeb_hi1\[29\].u_tie_oeb/LO
+ gen_oeb_hi1\[30\].u_tie_oeb/LO
+ gen_oeb_hi1\[31\].u_tie_oeb/LO
+ gen_oeb_hi1\[32\].u_tie_oeb/LO
+ gen_oeb_hi1\[33\].u_tie_oeb/LO
+ gen_oeb_hi1\[34\].u_tie_oeb/LO
+ gen_oeb_hi1\[35\].u_tie_oeb/LO
+ gen_oeb_hi1\[36\].u_tie_oeb/LO
+ gen_oeb_hi1\[37\].u_tie_oeb/LO
+ gen_oeb_lo\[21\].u_tie_oeb/HI
+ gen_oeb_lo\[22\].u_tie_oeb/HI
+ gen_oeb_lo\[23\].u_tie_oeb/HI
+ gen_oeb_lo\[24\].u_tie_oeb/HI
+ gen_oeb_lo\[25\].u_tie_oeb/HI
+ gen_oeb_lo\[26\].u_tie_oeb/HI
+ u_hsm/global_state_bits[0]
+ u_hsm/global_state_bits[1]
+ u_hsm/global_state_bits[2]
+ u_hsm/global_state_bits[3]
+ u_hsm/global_state_bits[4]
+ u_tie_io27/HI
+ u_tie_io28/HI
 Found 0 partially unannotated drivers.
 
 ===========================================================================
-max slew violation count 129
+max slew violation count 118
 max fanout violation count 0
-max cap violation count 127
+max cap violation count 111
 ============================================================================
 
 ===========================================================================
 check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
 ===========================================================================
-Warning: There are 227 unconstrained endpoints.
+Warning: There are 229 unconstrained endpoints.
   analog_io[0]
   analog_io[10]
   analog_io[11]
@@ -922,6 +912,8 @@ Warning: There are 227 unconstrained endpoints.
   io_out[19]
   io_out[1]
   io_out[20]
+  io_out[27]
+  io_out[28]
   io_out[29]
   io_out[2]
   io_out[30]

@@ -1,4 +1,4 @@
-52 Lint warnings found.
+58 Lint warnings found.
 'PNR_SDC_FILE' is not defined. Using generic fallback SDC for OpenROAD PnR steps.
 'SIGNOFF_SDC_FILE' is not defined. Using generic fallback SDC for OpenROAD PnR steps.
 Using 'MACRO_PLACEMENT_CFG' is deprecated. It is recommended to use the new 'MACROS' configuration variable.
@@ -13,8 +13,8 @@ Bterm vssd2 is declared as a 'GROUND' pin. It will be ignored.
 Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0097] No global routing found for nets.
 [GRT-0097] No global routing found for nets.
-[STA-1140] /home/jerry0510/Caravel/secure_boot_caravel/lib/secure_boot_control_plane.lib line 1, library secure_boot_control_plane already exists.
-[STA-1140] /home/jerry0510/Caravel/secure_boot_caravel/lib/secure_boot_control_plane.lib line 1, library secure_boot_control_plane already exists.
+[STA-1140] /home/jerry0510/Caravel/secure_boot_caravel/lib/hsm_top.lib line 1, library hsm_top already exists.
+[STA-1140] /home/jerry0510/Caravel/secure_boot_caravel/lib/hsm_top.lib line 1, library hsm_top already exists.
 [GRT-0097] No global routing found for nets.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
@@ -851,6 +851,14 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
+[GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
@@ -1049,6 +1057,20 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vssd1 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
@@ -1241,6 +1263,9 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
@@ -1433,8 +1458,16 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
 [GRT-0041] Net vssd2 has wires/vias outside die area.
-[GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vdda1 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
+[GRT-0041] Net vssd2 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
@@ -1620,39 +1653,6 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
@@ -1666,11 +1666,11 @@ Bterm vccd2 is declared as a 'POWER' pin. It will be ignored.
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
 Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
 Cell 'user_project_wrapper' has (29) inout pin(s) without anetnna gate information not antenna diffusion information. They might be disconnected.
-Cell 'user_project_wrapper' has (341) input pin(s) without antenna gate information. They might not be connected to a gate.
-Cell 'user_project_wrapper' has (198) output pin(s) without antenna diffusion information. They might not be driven.
-7177 Magic DRC errors found.
-140 KLayout DRC errors found.
-2866 LVS errors found.
+Cell 'user_project_wrapper' has (344) input pin(s) without antenna gate information. They might not be connected to a gate.
+Cell 'user_project_wrapper' has (200) output pin(s) without antenna diffusion information. They might not be driven.
+8463 Magic DRC errors found.
+94 KLayout DRC errors found.
+3431 LVS errors found.
 Max Slew violations found in the following corners:
 * max_ff_n40C_1v95
 * max_ss_100C_1v60

@@ -1,23 +1,8 @@
 // SPDX-FileCopyrightText: 2020 Efabless Corporation
 // SPDX-License-Identifier: Apache-2.0
 //
-// BASE v2.0 – user_project_wrapper.v
-//
-// Changes from v1.0:
-//   1. Removed conb_1 tie-offs for wbs_ack_o and wbs_dat_o[31:0]
-//      (now driven by secure_boot_control_plane)
-//   2. Removed user_irq[0] from gen_irq tie loop
-//      (now driven by secure_boot_control_plane)
-//   3. Replaced caravel_secure_boot u_secure_boot with
-//      secure_boot_control_plane u_secure_boot_cp
-//   4. VPWR/VGND ports removed from instantiation
-//      (control plane does not expose power pins)
-//
-// Unchanged from v1.0:
-//   - All GPIO tie-off generate blocks for unused pads
-//   - io_in[7:20] / io_out[21:28] bit assignments
-//   - la_data_out, io_out[0:20], io_out[29:37], io_oeb tie-offs
-//   - user_irq[2:1] tie LOW
+// BASE v3.0 – user_project_wrapper.v
+// Integrates hsm_top (full HSM) into the Caravel wrapper.
 // =============================================================================
 
 `default_nettype none
@@ -43,7 +28,7 @@ module user_project_wrapper #(parameter BITS = 32) (
 );
 
     // -------------------------------------------------------------------------
-    // CONSTANT CELLS – unchanged from v1.0
+    // CONSTANT CELLS – tie-offs
     // -------------------------------------------------------------------------
 
     // la_data_out (128 bits, LOW)
@@ -54,7 +39,7 @@ module user_project_wrapper #(parameter BITS = 32) (
         end
     endgenerate
 
-    // user_irq[2:1] (LOW) – user_irq[0] driven by control plane
+    // user_irq[2:1] (LOW) – user_irq[0] driven by HSM
     genvar i_irq;
     generate
         for (i_irq = 1; i_irq < 3; i_irq = i_irq + 1) begin : gen_irq
@@ -62,86 +47,94 @@ module user_project_wrapper #(parameter BITS = 32) (
         end
     endgenerate
 
-    // io_out: unused pads tied LOW
-    genvar i_io_out;
+    // io_out[0:4] tied LOW
+    genvar i_io;
     generate
-        for (i_io_out = 0; i_io_out <= 4; i_io_out = i_io_out + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_out_low0 (.HI(), .LO(io_out[i_io_out]));
-
-        for (i_io_out = 5; i_io_out <= 20; i_io_out = i_io_out + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_out_low1 (.HI(), .LO(io_out[i_io_out]));
-
-        for (i_io_out = 29; i_io_out <= 37; i_io_out = i_io_out + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_out_low2 (.HI(), .LO(io_out[i_io_out]));
+        for (i_io = 0; i_io <= 4; i_io = i_io + 1) begin : gen_io_out_low0
+            sky130_fd_sc_hd__conb_1 u_tie_io_out (.HI(), .LO(io_out[i_io]));
+        end
     endgenerate
 
-    // io_oeb: all pads HIGH (input direction)
-    // NOTE: io_oeb[21:28] are LOW here, meaning the pads are configured as
-    // inputs at the Caravel pad ring level. If io_out[21:28] need to drive
-    // outputs (output-enabled). io_oeb LOW = output direction.
-    // Verify with caravel/scripts/gen_gpio_defaults.py before tapeout.
-    genvar i_io_oeb;
+    // io_out[5:20] tied LOW
     generate
-        for (i_io_oeb = 0; i_io_oeb <= 4; i_io_oeb = i_io_oeb + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi0 (.HI(io_oeb[i_io_oeb]), .LO());
+        for (i_io = 5; i_io <= 20; i_io = i_io + 1) begin : gen_io_out_low1
+            sky130_fd_sc_hd__conb_1 u_tie_io_out (.HI(), .LO(io_out[i_io]));
+        end
+    endgenerate
 
-        for (i_io_oeb = 5; i_io_oeb <= 20; i_io_oeb = i_io_oeb + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi1 (.HI(io_oeb[i_io_oeb]), .LO());
+    // io_out[27:28] tied LOW
+    sky130_fd_sc_hd__conb_1 u_tie_io27 (.HI(), .LO(io_out[27]));
+    sky130_fd_sc_hd__conb_1 u_tie_io28 (.HI(), .LO(io_out[28]));
 
-        for (i_io_oeb = 21; i_io_oeb <= 28; i_io_oeb = i_io_oeb + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_lo2 (.HI(), .LO(io_oeb[i_io_oeb]));
-
-        for (i_io_oeb = 29; i_io_oeb <= 37; i_io_oeb = i_io_oeb + 1)
-            sky130_fd_sc_hd__conb_1 u_tie_io_oeb_hi3 (.HI(io_oeb[i_io_oeb]), .LO());
+    // io_out[29:37] tied LOW
+    generate
+        for (i_io = 29; i_io <= 37; i_io = i_io + 1) begin : gen_io_out_low2
+            sky130_fd_sc_hd__conb_1 u_tie_io_out (.HI(), .LO(io_out[i_io]));
+        end
     endgenerate
 
     // -------------------------------------------------------------------------
-    // BASE v2.0 – Secure Boot Control Plane
-    //
-    // Replaces: caravel_secure_boot u_secure_boot
-    // Adds:     Wishbone register file, shadow stickies, IRQ
+    // io_oeb: Output Enable Bar
+    //   HIGH = input mode, LOW = output mode
+    //   Pads 21-26: OUTPUT (driven by HSM) -> oeb LOW
+    //   All others: INPUT -> oeb HIGH
     // -------------------------------------------------------------------------
-    secure_boot_control_plane u_secure_boot_cp (
+    genvar i_oeb;
+
+    // io_oeb[0:20] HIGH (input)
+    generate
+        for (i_oeb = 0; i_oeb <= 20; i_oeb = i_oeb + 1) begin : gen_oeb_hi0
+            sky130_fd_sc_hd__conb_1 u_tie_oeb (.HI(io_oeb[i_oeb]), .LO());
+        end
+    endgenerate
+
+    // io_oeb[21:26] LOW (output — HSM drives these pads)
+    generate
+        for (i_oeb = 21; i_oeb <= 26; i_oeb = i_oeb + 1) begin : gen_oeb_lo
+            sky130_fd_sc_hd__conb_1 u_tie_oeb (.HI(), .LO(io_oeb[i_oeb]));
+        end
+    endgenerate
+
+    // io_oeb[27:37] HIGH (input)
+    generate
+        for (i_oeb = 27; i_oeb <= 37; i_oeb = i_oeb + 1) begin : gen_oeb_hi1
+            sky130_fd_sc_hd__conb_1 u_tie_oeb (.HI(io_oeb[i_oeb]), .LO());
+        end
+    endgenerate
+
+    // -------------------------------------------------------------------------
+    // HSM v3.0 – Hardware Security Module
+    // -------------------------------------------------------------------------
+    hsm_top u_hsm (
+        .clk            (wb_clk_i),
+        .reset          (wb_rst_i),
+
         // Wishbone slave interface
-        .wb_clk_i       (wb_clk_i),
-        .wb_rst_i       (wb_rst_i),
+        .wb_cyc_i       (wbs_cyc_i),
+        .wb_stb_i       (wbs_stb_i),
+        .wb_we_i        (wbs_we_i),
         .wb_adr_i       (wbs_adr_i),
         .wb_dat_i       (wbs_dat_i),
         .wb_sel_i       (wbs_sel_i),
-        .wb_we_i        (wbs_we_i),
-        .wb_stb_i       (wbs_stb_i),
-        .wb_cyc_i       (wbs_cyc_i),
         .wb_dat_o       (wbs_dat_o),
         .wb_ack_o       (wbs_ack_o),
 
-        // GPIO inputs (io_in[7:20]) – identical to v1.0 mapping
-        .fw_ok          (io_in[7]),
-        .fw_fail        (io_in[8]),
-        .size_mismatch  (io_in[9]),
-        .hdr_parse_fail (io_in[10]),
-        .power_glitch   (io_in[11]),
-        .clock_glitch   (io_in[12]),
-        .warm_reset_req (io_in[13]),
-        .cold_reset_req (io_in[14]),
-        .global_pin_ok  (io_in[15]),
-        .unlock_req     (io_in[16]),
-        .file_denied    (io_in[17]),
-        .group_autolock (io_in[18]),
-        .tamper_in      (io_in[19]),
-        .illegal_in     (io_in[20]),
+        // External signals from GPIO
+        .global_pin_ok  (io_in[7]),
+        .warm_reset_req (io_in[8]),
+        .cold_reset_req (io_in[9]),
 
-        // GPIO outputs (io_out[21:28]) – identical to v1.0 mapping
-        .unlock_enable  (io_out[21]),
-        .debug_enable   (io_out[22]),
+        // Status outputs -> GPIO (direct drive)
+        .boot_valid     (io_out[21]),
+        .boot_fail      (io_out[22]),
         .safe_led       (io_out[23]),
         .fsm_error      (io_out[24]),
         .security_breach(io_out[25]),
-        .group_unlocked (io_out[26]),
-        .group_suspended(io_out[27]),
-        .group_error    (io_out[28]),
+        .vault_is_locked(io_out[26]),
 
-        // IRQ to management core
-        .user_irq       (user_irq[0])
+        // Unrouted outputs
+        .global_state_bits (),
+        .irq            (user_irq[0])
     );
 
 endmodule

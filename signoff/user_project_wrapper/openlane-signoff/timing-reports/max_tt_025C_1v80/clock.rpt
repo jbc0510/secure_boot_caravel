@@ -19,19 +19,19 @@ Clock wb_clk_i
 rise -> rise
     min     max
 0.000000 0.000000 source latency
-1.313370         network latency u_secure_boot_cp/wb_clk_i
-        1.313370 network latency u_secure_boot_cp/wb_clk_i
+1.626160         network latency u_hsm/clk
+        1.626160 network latency u_hsm/clk
 ---------------
-1.313370 1.313370 latency
+1.626160 1.626160 latency
         0.000000 skew
 
 fall -> fall
     min     max
 0.000000 0.000000 source latency
-0.814775         network latency u_secure_boot_cp/wb_clk_i
-        0.814775 network latency u_secure_boot_cp/wb_clk_i
+1.046261         network latency u_hsm/clk
+        1.046261 network latency u_hsm/clk
 ---------------
-0.814775 0.814775 latency
+1.046261 1.046261 latency
         0.000000 skew
 
 
